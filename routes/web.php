@@ -25,6 +25,7 @@ Route::get('/api_get_subcategories/{id}', [CategoryController::class, 'subcatego
 
 // Product browse page
 Route::get('/porto/product/all/{cat}/{sub_cat}', [PortoFrontendController::class,'viewAllProducts'])->name('proto-view-all-products');
+Route::get('/porto/product/all', [PortoFrontendController::class,'viewAllProductsByBrandOrCategory'])->name('proto-view-all-products-byBrandOrCategory');
 Route::get('/porto/product/cart/add/{product_id}/{quantity}', [CartController::class, 'add_to_cart'])->name('porto-add-to-cart');
 Route::get('/porto/product/cart/details', [CartController::class, 'get_cart_details'])->name('porto-get-cart-details');
 Route::get('/porto/product/cart/remove/{product_id}', [CartController::class, 'delete_item'])->name('porto-remove-from-cart');

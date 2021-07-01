@@ -1,21 +1,33 @@
 @extends('themes.porto.layout.app')
-
+<?php
+    // Please Change the section name to choose section product for home 
+    $section_name = 'Flash deals';
+    $weekly_featured_section = -1;
+        foreach ($homepage_sections as $key => $section) {
+            if($section->section_name === $section_name) {
+                $weekly_featured_section = $key;
+            }
+        } 
+    ?>
 @section('content') 
 <div class="container">
     <section>
         <div class="row row-sm align-items-center">
             <div class="col-lg-8">
                 <div class="home-slider owl-carousel owl-carousel-lazy owl-theme">
-                    <div class="home-slide" class="owl-lazy">
-                        <img class="owl-lazy" src="{{ asset('assets/porto-theme/images/lazy.png') }}" data-src="" alt="slider image">
-                        <img src="{{ asset('assets/porto-theme/images/slider/slide1.jpg') }}">
-                        <div class="home-slide-content1">
-                            <h2>chairs</h2>
-                            <p>custom designs<br>you can afford</p>
-                            <button class="btn btn-dark">view the collection</button>
+                    @foreach ($banners as $banner)
+                        <div class="home-slide" class="owl-lazy">
+                            <img class="owl-lazy" src="{{ asset($banner->image) }}" data-src="" alt="slider image">
+                            <img src="{{ asset($banner->image) }}">
+                            <div class="home-slide-content1">
+                                {{-- <h2>chairs</h2>
+                                <p>custom designs<br>you can afford</p> --}}
+                                <button class="btn btn-dark">view the collection</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="home-slide" class="owl-lazy">
+                    @endforeach
+                    
+                    {{-- <div class="home-slide" class="owl-lazy">
                         <img class="owl-lazy" src="{{ asset('assets/porto-theme/images/lazy.png') }}" data-src="" alt="slider image">
                         <img src="{{ asset('assets/porto-theme/images/slider/slide2.jpg') }}">
                         <div class="home-slide-content2">
@@ -43,33 +55,29 @@
                             <p>Starting at $9</p>
                             <button class="btn btn-dark">shop now</button>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="col-lg-4">
-                <form action="#" method="get" class="find-form">
+                <form action="{{ route('proto-view-all-products-byBrandOrCategory') }}" method="GET" class="find-form">
                     <h3>find a product</h3>
                     <div class="select-custom">
-                        <select class="form-control" id="byCategory">
+                        <select class="form-control" id="byCategory" name="category">
                             <option disabled="" selected="" hidden="">BY CATEGORY</option>
-                            <option>FASHION</option>
-                            <option>FURNITURE</option>
-                            <option>DECORE</option>
-                            <option>ACCESORIES</option>
-                            <option>MOBILE</option>
-                            <option>FOOTWEAR</option>
+                            @foreach ($categories as $category)
+                                <option value={{ $category->id }}>{{ $category->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="select-custom">
-                        <select class="form-control" id="byBrand">
+                        <select class="form-control" id="byBrand" name="brand">
                             <option disabled="" selected="" hidden="">BY BRAND</option>
-                            <option>Paradoxx</option>
-                            <option>iCompany</option>
-                            <option>JET ORANGE</option>
-                            <option>iMessenger</option>
-                            <option>VOREED</option>
+                            @foreach ($brands as $brand)
+                                <option value={{ $brand->id }}>{{ $brand->brand_name }}</option>
+                            @endforeach
                         </select>
                     </div>
+                    <button type="submit">Browse</button>
                 </form>
                 <div class="home-banner mb-2" style="background-image: url('{{ asset('/assets/porto-theme/images/banners/watch.png') }});">
                     <div class="row row-sm">
@@ -166,6 +174,8 @@
         </div>
     </section>
 
+    
+    @if ($weekly_featured_section !== -1)
     <section class="featured-products">
         <h2>weekly featured products</h2>
 
@@ -186,10 +196,11 @@
                 }
             }
         }">
+        @foreach ($homepage_sections[$weekly_featured_section]->product_list as $product_list)
             <div class="product-default inner-icon inner-icon-inline  center-details">
                 <figure>
                     <a href="product.html">
-                        <img src="{{ asset('/assets/porto-theme/images/products/product1.jpg') }}">
+                        <img src="{{ asset($product_list->product->thumbnail_image) }}">
                     </a>
                     <div class="btn-icon-group">
                         <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="icon-bag"></i></button>
@@ -205,148 +216,22 @@
                         </div><!-- End .product-ratings -->
                     </div><!-- End .product-container -->
                     <h2 class="product-title">
-                        <a href="product.html">Black Chair Top</a>
+                        <a href="product.html">{{ $product_list->product->name }}</a>
                     </h2>
                     <div class="price-box">
-                        <span class="product-price">$56.00</span>
+                        <span class="product-price">{{ $product_list->product->price }}</span>
                     </div><!-- End .price-box -->
                 </div><!-- End .product-details -->
-            </div>
-
-            <div class="product-default inner-icon inner-icon-inline center-details ">
-                <figure>
-                    <a href="product.html">
-                        <img src="{{ asset('/assets/porto-theme/images/products/product2.jpg') }}">
-                    </a>
-                    <div class="btn-icon-group">
-                        <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="icon-bag"></i></button>
-                        <a href="#" class="btn-icon btn-icon-wish"><i class="icon-heart"></i></a>
-                        <a href="ajax/product-quick-view.html" class="btn-icon btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a> 
-                    </div>
-                </figure>
-                <div class="product-details">
-                    <div class="ratings-container">
-                        <div class="product-ratings">
-                            <span class="ratings" style="width:80%"></span><!-- End .ratings -->
-                            <span class="tooltiptext tooltip-top"></span>
-                        </div><!-- End .product-ratings -->
-                    </div><!-- End .product-container -->
-                    <h2 class="product-title">
-                        <a href="product.html">Brown Food Recipent</a>
-                    </h2>
-                    <div class="price-box">
-                        <span class="product-price">$56.00</span>
-                    </div><!-- End .price-box -->
-                </div><!-- End .product-details -->
-            </div>
-
-            <div class="product-default inner-icon inner-icon-inline center-details">
-                <figure>
-                    <a href="product.html">
-                        <img src="{{ asset('/assets/porto-theme/images/products/product3.jpg') }}">
-                    </a>
-                    <div class="btn-icon-group">
-                        <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="icon-bag"></i></button>
-                        <a href="#" class="btn-icon btn-icon-wish"><i class="icon-heart"></i></a>
-                        <a href="ajax/product-quick-view.html" class="btn-icon btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a> 
-                    </div>
-                </figure>
-                <div class="product-details">
-                    <div class="ratings-container">
-                        <div class="product-ratings">
-                            <span class="ratings" style="width:80%"></span><!-- End .ratings -->
-                            <span class="tooltiptext tooltip-top"></span>
-                        </div><!-- End .product-ratings -->
-                    </div><!-- End .product-container -->
-                    <h2 class="product-title">
-                        <a href="product.html">Modern White Chair</a>
-                    </h2>
-                    <div class="price-box">
-                        <span class="product-price">$56.00</span>
-                    </div><!-- End .price-box -->
-                </div><!-- End .product-details -->
-            </div>
-
-            <div class="product-default inner-icon inner-icon-inline  center-details">
-                <figure>
-                    <a href="product.html">
-                        <img src="{{ asset('/assets/porto-theme/images/products/product4.jpg') }}">
-                    </a>
-                    <div class="btn-icon-group">
-                        <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="icon-bag"></i></button>
-                        <a href="#" class="btn-icon btn-icon-wish"><i class="icon-heart"></i></a>
-                        <a href="ajax/product-quick-view.html" class="btn-icon btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a> 
-                    </div>
-                </figure>
-                <div class="product-details">
-                    <div class="ratings-container">
-                        <div class="product-ratings">
-                            <span class="ratings" style="width:80%"></span><!-- End .ratings -->
-                            <span class="tooltiptext tooltip-top"></span>
-                        </div><!-- End .product-ratings -->
-                    </div><!-- End .product-container -->
-                    <h2 class="product-title">
-                        <a href="product.html">Black Metal Light Bulb</a>
-                    </h2>
-                    <div class="price-box">
-                        <span class="product-price">$56.00</span>
-                    </div><!-- End .price-box -->
-                </div><!-- End .product-details -->
-            </div>
-
-            <div class="product-default inner-icon inner-icon-inline  center-details">
-                <figure>
-                    <a href="product.html">
-                        <img src="{{ asset('/assets/porto-theme/images/products/product1.jpg') }}">
-                    </a>
-                    <div class="btn-icon-group">
-                        <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="icon-bag"></i></button>
-                        <a href="#" class="btn-icon btn-icon-wish"><i class="icon-heart"></i></a>
-                        <a href="ajax/product-quick-view.html" class="btn-icon btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a> 
-                    </div>
-                </figure>
-                <div class="product-details">
-                    <div class="ratings-container">
-                        <div class="product-ratings">
-                            <span class="ratings" style="width:80%"></span><!-- End .ratings -->
-                            <span class="tooltiptext tooltip-top"></span>
-                        </div><!-- End .product-ratings -->
-                    </div><!-- End .product-container -->
-                    <h2 class="product-title">
-                        <a href="product.html">Black Chair Top</a>
-                    </h2>
-                    <div class="price-box">
-                        <span class="product-price">$56.00</span>
-                    </div><!-- End .price-box -->
-                </div><!-- End .product-details -->
-            </div>
+            </div> 
+        @endforeach
+                       
         </div>
     </section>
+    @endif
+
+    
 
     <section>
-        <h2>offers and deals</h2>
-
-        <div class="banner-offers row row-sm">
-            <div class="col-md-6">
-                <div class="home-banner">
-                    <img src="{{ asset('/assets/porto-theme/images/banners/home-banner1.png') }}">
-                    <div class="banner-content">
-                        <h3>Jeans</h3>
-                        <p>$10 cashback</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="home-banner">
-                    <img src="{{ asset('/assets/porto-theme/images/banners/home-banner2.png') }}">
-                    <div class="banner-content">
-                        <h3>25%Off</h3>
-                        <button class="btn">view the collection</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="home-banner banner-deals" style="background-image: url('{{ asset('/assets/porto-theme/images/banners/banner-deals.jpg') }});">
             <div class="banner-content">
                 <h3>never miss any deals</h3>
@@ -360,44 +245,6 @@
             </div>
         </div>
 
-    </section>
-
-    <section class="partners-panel">
-        <div class="partners-carousel owl-carousel owl-theme text-center" data-toggle="owl" data-owl-options="{
-            'loop' : true,
-            'nav': true,
-            'dots': false,
-            'margin' : 40,
-            'autoHeight': true,
-            'autoplay': false,
-            'autoplayTimeout': 5000,
-            'responsive': {
-              '0': {
-                'items': 2,
-                'margin': 10
-              },
-              '655': {
-                'items': 3
-              },
-              '960' : {
-                'items' : 4
-              },
-              '1200': {
-                'items': 5
-              }
-            }
-        }">
-            <img src="{{ asset('/assets/porto-theme/images/logos/1.png') }}" alt="logo">
-            <img src="{{ asset('/assets/porto-theme/images/logos/2.png') }}" alt="logo">
-            <img src="{{ asset('/assets/porto-theme/images/logos/3.png') }}" alt="logo">
-            <img src="{{ asset('/assets/porto-theme/images/logos/4.png') }}" alt="logo">
-            <img src="{{ asset('/assets/porto-theme/images/logos/5.png') }}" alt="logo">
-            <img src="{{ asset('/assets/porto-theme/images/logos/1.png') }}" alt="logo">
-            <img src="{{ asset('/assets/porto-theme/images/logos/2.png') }}" alt="logo">
-            <img src="{{ asset('/assets/porto-theme/images/logos/3.png') }}" alt="logo">
-            <img src="{{ asset('/assets/porto-theme/images/logos/4.png') }}" alt="logo">
-            <img src="{{ asset('/assets/porto-theme/images/logos/5.png') }}" alt="logo">
-        </div>
     </section>
 </div>
 @endsection
