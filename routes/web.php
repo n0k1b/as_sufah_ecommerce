@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FrontController;
+use App\Http\Controllers\PortoFrontendController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +16,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Porto Theme
+//frontend start
+Route::get('/porto', [PortoFrontendController::class, 'viewIndex'])->name('porto-home');
+Route::get('/porto/product/view/{id}', [PortoFrontendController::class, 'viewSingleProduct'])->name('porto-view-single-product');
+//Route::view('/porto', 'themePorto.index');
+Route::get('/api_get_subcategories/{id}', [CategoryController::class, 'subcategoriesOfJSON'])->name('api_get_subcategories');
+
+// Product browse page
+Route::get('/porto/product/all/{cat}/{sub_cat}', [PortoFrontendController::class,'viewAllProducts'])->name('proto-view-all-products');
+Route::get('/porto/product/cart/add/{product_id}/{quantity}', [CartController::class, 'add_to_cart'])->name('porto-add-to-cart');
+Route::get('/porto/product/cart/details', [CartController::class, 'get_cart_details'])->name('porto-get-cart-details');
+Route::get('/porto/product/cart/remove/{product_id}', [CartController::class, 'delete_item'])->name('porto-remove-from-cart');
+Route::get('/porto/cart/checkout', [PortoFrontendController::class, 'viewCartCheckout'])->name('porto-view-cart-checkout');
+
+
+
 //test route start
 
 
@@ -22,10 +42,10 @@ use Illuminate\Support\Facades\Route;
 
 
 //frontend start
-Route::get('/clear-cache', function() {
-    $exitCode = Artisan::call('cache:clear');
-    // return what you want
-});
+// Route::get('/clear-cache', function() {
+//     $exitCode = Artisan::call('cache:clear');
+//     // return what you want
+// });
 Route::get('/','FrontController@index');
 Route::get('get_all_category','FrontController@get_all_category')->name('get_all_category');
 Route::post('cart_add','FrontController@cart_add')->name('cart_add');

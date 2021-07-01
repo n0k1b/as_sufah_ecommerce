@@ -38,6 +38,13 @@ class product extends Model
     {
         return $this->belongsTo('App\Models\warehouse_product','id','product_id')->withDefault();
     }
-
+    public function images()
+    {
+        return $this->hasMany('App\Models\product_detail_image', 'id', 'product_id');
+    }
+    public function colors()
+    {
+        return $this->hasMany('App\Models\product_color', 'id', 'product_id');
+    }
 
 }
