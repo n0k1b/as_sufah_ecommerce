@@ -187,7 +187,7 @@
                         </ul>
                     </nav>
                     <a href="{{ route('porto-home') }}" class="logo">
-                        <img src="{{ asset('/assets/porto-theme/images/logo.png') }}" alt="Porto Logo">
+                        <img src="{{ asset('/image/organization_logo').'/'.$logo }}" style="height: 100px !important;  width: auto !important;" alt="Porto Logo">
                     </a>
                     <nav class="main-nav">
                         <ul class="menu">

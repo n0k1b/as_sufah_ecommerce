@@ -69,6 +69,10 @@
 											</div>
 										</div>
 
+										<div class="mb-3">
+											<label for="formFile" class="form-label">Company Logo</label>
+											<input class="form-control" type="file" id="formFile" name="logo">
+										  </div>
 
 										<div class="col-lg-12 col-md-12 col-sm-12">
 											<button type="submit" class="btn btn-primary">Submit</button>

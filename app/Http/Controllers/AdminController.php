@@ -3412,7 +3412,12 @@ class AdminController extends Controller
         }
         public function add_company_info(Request $request)
         {
-            company_info::where('id',2)->update($request->except('_token'));
+            company_info::where('id',2)->update($request->except('_token', 'logo'));
+            $logoName = time() . '.' . $request->file('logo')->extension();
+            $request->file('logo')->move(base_path('image/organization_logo'), $logoName);
+            $info = json_decode(file_get_contents(storage_path('info.json')), true);
+            $info['logo'] = $logoName;
+            file_put_contents(storage_path('info.json'), json_encode($info));
             return redirect()->route('show-all-company-info')->with('success','Information Updated Successfully');
         }
     //company info end

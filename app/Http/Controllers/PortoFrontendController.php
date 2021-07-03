@@ -17,8 +17,9 @@ class PortoFrontendController extends Controller
     {
         $categories = category::all();
         $brands = product_brand::all();
+        $logo = json_decode(file_get_contents(storage_path('info.json')))->logo;
 
-        View::share(['categories' => $categories, 'brands' => $brands]);
+        View::share(['categories' => $categories, 'brands' => $brands, 'logo' => $logo]);
     }
     function viewIndex()
     {
