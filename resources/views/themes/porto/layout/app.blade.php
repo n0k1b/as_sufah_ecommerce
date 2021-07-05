@@ -98,52 +98,6 @@
                     <nav class="main-nav">
                         <ul class="menu">
                             <li><a href="index-2.html">Home</a></li>
-                            <li><a href="#">Fashion</a>
-                                <div class="megamenu">
-                                    <div class="row row-sm">
-                                        <div class="col-lg-2">
-                                            <a href="#" class="nolink">WOMAN</a>
-                                            <ul class="submenu">
-                                                <li><a href="#">TOPS & BLOUSES</a></li>
-                                                <li><a href="#">ACCESSORIES</a></li>
-                                                <li><a href="#">DRESSES & SKIRTS</a></li>
-                                                <li><a href="#">SHOES &BOOTS</a></li>
-                                            </ul>
-                                        </div>
-
-                                        <div class="col-lg-2">
-                                            <a href="#" class="nolink">JUWELLERY</a>
-                                            <ul class="submenu">
-                                                <li><a href="#">SWEATERS</a></li>
-                                                <li><a href="#">HEELS & SANDALS</a></li>
-                                                <li><a href="#">JEANS & SHORTS</a></li>
-                                            </ul>
-                                        </div>
-
-                                        <div class="col-lg-2">
-                                            <a href="#" class="nolink">MEN</a>
-                                            <ul class="submenu">
-                                                <li><a href="#">ACCESSORIES</a></li>
-                                                <li><a href="#">WATCH FASHION</a></li>
-                                                <li><a href="#">TEES, KNITS & POLOS</a></li>
-                                                <li><a href="#">PANTS & DENIM</a></li>
-                                            </ul>
-                                        </div>
-
-                                        <div class="col-lg-2">
-                                            <a href="#" class="nolink">KIDS FASHION</a>
-                                            <ul class="submenu">
-                                                <li><a href="#">CASUAL SHOES</a></li>
-                                                <li><a href="#">SPRING & AUTUMN</a></li>
-                                                <li><a href="#">WINTER SNEAKERS</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-lg-4 image-container">
-                                            <img src="{{ asset('/assets/porto-theme/images/menu-banner.jpg') }}">
-                                        </div>
-                                    </div>
-                                </div><!-- End .megamenu -->
-                            </li>
                             <li>
                                 <?php 
                                     $loop_index = 0 
@@ -163,21 +117,6 @@
                                                  
                                             </ul>
                                         </div>
-                                        {{-- <div class="col-lg-4">
-                                            <ul class="submenu">
-                                                @for($i = 0; $i < count($categories)/2; $i++)
-                                                    <li id="nav_cat_{{  }}"><a href="category.html">{{ $categories[$i]->name }}</a></li>
-                                                    <?php $loop_index = $i ?>
-                                                @endfor                                                
-                                            </ul>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <ul class="submenu">
-                                                @for($i = $loop_index; $i < count($categories); $i++)
-                                                    <li><a href="category.html">{{ $categories[$i]->name }}</a></li>
-                                                @endfor  
-                                            </ul>
-                                        </div> --}}
                                         <div class="col-lg-4 image-container">
                                             <img src="{{ asset('/assets/porto-theme/images/menu-banner-2.jpg') }}" align="Menu banner">
                                         </div>
@@ -203,21 +142,6 @@
                                                 @endforeach                                                
                                             </ul>
                                         </div><!-- End .col-lg-4 -->
-                                        {{-- <div class="col-lg-4">
-                                            <a href="#" class="nolink">Product Layout Types</a>
-                                            <ul class="submenu">
-                                                <li><a href="product.html">Default Layout</a></li>
-                                                <li><a href="product-extended-layout.html">Extended Layout</a></li>
-                                                <li><a href="product-full-width.html">Full Width Layout</a></li>
-                                                <li><a href="product-grid-layout.html">Grid Images Layout</a></li>
-                                                <li><a href="product-sticky-both.html">Sticky Both Side Info</a></li>
-                                                <li><a href="product-sticky-info.html">Sticky Right Side Info</a></li>
-                                            </ul>
-                                        </div><!-- End .col-lg-4 --> --}}
-
-                                        {{-- <div class="col-lg-4 image-container">
-                                            <img src="{{ asset('/assets/porto-theme/images/menu-banner-2.jpg') }}" alt="Menu banner" class="product-promo">
-                                        </div><!-- End .col-lg-4 --> --}}
                                     </div><!-- End .row -->
                                 </div><!-- End .megamenu -->
                             </li>
@@ -225,39 +149,13 @@
                                 <a href="#">Pages</a>
                                 <ul>
                                     <li><a href="cart.html">Shopping Cart</a></li>
-                                    <li><a href="#">Checkout</a>
-                                        <ul>
-                                            <li><a href="checkout-shipping.html">Checkout Shipping</a></li>
-                                            <li><a href="checkout-shipping-2.html">Checkout Shipping 2</a></li>
-                                            <li><a href="checkout-review.html">Checkout Review</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Dashboard</a>
-                                        <ul>
-                                            <li><a href="dashboard.html">Dashboard</a></li>
-                                            <li><a href="my-account.html">My Account</a></li>
-                                        </ul>
-                                    </li>
+                                    <li><a href="{{ route('porto-view-cart-checkout') }}">Checkout</a></li>
+                                    <li><a href="{{ route('admin-dashboard') }}">Admin Dashboard</a></li>
                                     <li><a href="about.html">About Us</a></li>
-                                    <li><a href="#">Blog</a>
-                                        <ul>
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="single.html">Blog Post</a></li>
-                                        </ul>
-                                    </li>
                                     <li><a href="contact.html">Contact Us</a></li>
                                     <li><a href="#" class="login-link">Login</a></li>
-                                    <li><a href="forgot-password.html">Forgot Password</a></li>
                                 </ul>
                             </li>
-                            <li class="sf-with-ul">
-                                <a href="#">Features</a>
-                                <ul>
-                                    <li><a href="#">Header Types</a></li>
-                                    <li><a href="#">Footer Types</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="https://1.envato.market/DdLk5" target="_blank">Buy Porto!</a></li>
                         </ul>
                     </nav>
                     <button class="mobile-menu-toggler" type="button">
@@ -527,7 +425,7 @@
     </div><!-- End .mobile-menu-container -->
 
     <!-- newsletter-popup-form -->
-    <div class="newsletter-popup mfp-hide bg-img" id="newsletter-popup-form" style="background-image: url({{ asset('/assets/porto-theme/images/newsletter_popup_bg.jpg') }})">
+    <div class="newsletter-popup mfp-hide bg-img" id="newsletter-popup-form" style="background-image: url({{ asset('/assets/porto-theme/images/newsletter_popup_bg.jpg') }});">
         <div class="newsletter-popup-content">
             <img src="{{ asset('/assets/porto-theme/images/logo-black.png') }}" alt="Logo" class="logo-newsletter">
             <h2>BE THE FIRST TO KNOW</h2>
