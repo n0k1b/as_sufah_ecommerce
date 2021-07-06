@@ -26,39 +26,15 @@
                             </div>
                         </div>
                     @endforeach
-                    
-                    {{-- <div class="home-slide" class="owl-lazy">
-                        <img class="owl-lazy" src="{{ asset('assets/porto-theme/images/lazy.png') }}" data-src="" alt="slider image">
-                        <img src="{{ asset('assets/porto-theme/images/slider/slide2.jpg') }}">
-                        <div class="home-slide-content2">
-                            <span>up to <strong>40%</strong> off</span>
-                            <h2>new arrivals</h2>
-                            <p>Starting at $9</p>
-                            <button class="btn btn-dark">shop now</button>
-                        </div>
-                    </div>
-                    <div class="home-slide" class="owl-lazy">
-                        <img class="owl-lazy" src="{{ asset('/assets/porto-theme/images/lazy.png') }}" data-src="" alt="slider image">
-                        <img src="{{ asset('/assets/porto-theme/images/slider/slide1.jpg') }}">
-                        <div class="home-slide-content1">
-                            <h2>chairs</h2>
-                            <p>custom designs<br>you can afford</p>
-                            <button class="btn btn-dark">view the collection</button>
-                        </div>
-                    </div>
-                    <div class="home-slide" class="owl-lazy">
-                        <img class="owl-lazy" src="{{ asset('/assets/porto-theme/images/lazy.png') }}" data-src="" alt="slider image">
-                        <img src="{{ asset('/assets/porto-theme/images/slider/slide2.jpg') }}">
-                        <div class="home-slide-content2">
-                            <span>up to <strong>40%</strong> off</span>
-                            <h2>new arrivals</h2>
-                            <p>Starting at $9</p>
-                            <button class="btn btn-dark">shop now</button>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
             <div class="col-lg-4">
+                @if (session()->has('browse_error'))
+                    <div class="alert alert-info" role="alert">
+                        {{ session()->get('browse_error') }}
+                    </div>
+                @endif
+                
                 <form action="{{ route('proto-view-all-products-byBrandOrCategory') }}" method="GET" class="find-form">
                     <h3>find a product</h3>
                     <div class="select-custom">
@@ -101,7 +77,7 @@
         <div class="row row-sm">
             <div class="col-6 col-md-4">
                 <div class="product-category content-left-bottom hidden-count overlay-darker">
-                    <a href="#">
+                    <a href="{{ route('proto-view-all-products', ['cat' => $categories[0]->id, 'sub_cat' => -1]) }}">
                         <figure>
                             <img src="{{ asset($categories[0]->image) }}">
                         </figure>
@@ -113,7 +89,7 @@
             </div>
             <div class="col-6 col-md-5">
                 <div class="product-category content-left-bottom hidden-count overlay-darker">
-                    <a href="#">
+                    <a href="{{ route('proto-view-all-products', ['cat' => $categories[1]->id, 'sub_cat' => -1]) }}">
                         <figure>
                             <img src="{{ asset($categories[1]->image) }}">
                         </figure>
@@ -125,7 +101,7 @@
             </div>
             <div class="col-6 col-md-3">
                 <div class="product-category content-left-bottom hidden-count overlay-darker">
-                    <a href="#">
+                    <a href="{{ route('proto-view-all-products', ['cat' => $categories[2]->id, 'sub_cat' => -1]) }}">
                         <figure>
                             <img src="{{ asset($categories[2]->image) }}">
                         </figure>
@@ -137,7 +113,7 @@
             </div>
             <div class="col-6 col-md-4">
                 <div class="product-category content-left-bottom hidden-count overlay-darker">
-                    <a href="#">
+                    <a href="{{ route('proto-view-all-products', ['cat' => $categories[3]->id, 'sub_cat' => -1]) }}">
                         <figure>
                             <img src="{{ asset($categories[3]->image) }}">
                         </figure>
@@ -149,7 +125,7 @@
             </div>
             <div class="col-6 col-md-3">
                 <div class="product-category content-left-bottom hidden-count overlay-darker">
-                    <a href="#">
+                    <a href="{{ route('proto-view-all-products', ['cat' => $categories[4]->id, 'sub_cat' => -1]) }}">
                         <figure>
                             <img src="{{ asset($categories[4]->image) }}">
                         </figure>
@@ -161,7 +137,7 @@
             </div>
             <div class="col-6 col-md-5">
                 <div class="product-category content-left-bottom hidden-count overlay-darker">
-                    <a href="#">
+                    <a href="{{ route('proto-view-all-products', ['cat' => $categories[5]->id, 'sub_cat' => -1]) }}">
                         <figure>
                             <img src="{{ asset($categories[5]->image) }}">
                         </figure>
@@ -203,7 +179,7 @@
                         <img src="{{ asset($product_list->product->thumbnail_image) }}">
                     </a>
                     <div class="btn-icon-group">
-                        <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="icon-bag"></i></button>
+                        <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal" onclick="handleAddToCart({{$product_list->product->id}})"><i class="icon-bag"></i></button>
                         <a href="#" class="btn-icon btn-icon-wish"><i class="icon-heart"></i></a>
                         <a href="ajax/product-quick-view.html" class="btn-icon btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a> 
                     </div>
@@ -247,4 +223,8 @@
 
     </section>
 </div>
+@endsection
+
+@section('page-script')
+<script src="{{ asset('/assets/porto-theme/js/pages/index.js') }}"></script>
 @endsection

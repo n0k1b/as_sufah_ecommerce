@@ -54,7 +54,6 @@
                         <nav class="main-nav">
                             <ul class="menu">
                                 <li><a href="my-account.html">My Account</a></li>
-                                <li><a href="#">Daily Deal</a></li>
                                 <li><a href="#">My Wishlist</a></li>
                                 <li><a href="blog.html">Blog</a></li>
                                 <li><a href="login.html">Login</a></li>
@@ -63,14 +62,14 @@
                         <div class="dropdown cart-dropdown">
                             <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                                 <i class="icon-bag-1"></i>
-                                <span class="cart-count" id="nav-cart-count_badge">2</span>
+                                <span class="cart-count" id="nav-cart-count_badge">0</span>
                                 <span>items on bag</span>
                             </a>
 
                             <div class="dropdown-menu" >
                                 <div class="dropdownmenu-wrapper">
                                     <div class="dropdown-cart-header">
-                                        <span><span id="nav-cart-count">2</span> Items</span>
+                                        <span><span id="nav-cart-count">0</span> Items</span>
 
                                         <a href="cart.html">View Cart</a>
                                     </div><!-- End .dropdown-cart-header -->
@@ -81,7 +80,7 @@
                                     <div class="dropdown-cart-total">
                                         <span>Total</span>
 
-                                        <span class="cart-total-price">tk<span id="nav-cart-total-price">134.00</span></span>
+                                        <span class="cart-total-price">tk<span id="nav-cart-total-price">0.00</span></span>
                                     </div><!-- End .dropdown-cart-total -->
 
                                     <div class="dropdown-cart-action">
