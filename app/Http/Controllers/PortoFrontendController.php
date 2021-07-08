@@ -51,6 +51,9 @@ class PortoFrontendController extends Controller
             $products = product::where('category_id', $category_id)->get();
         } else if($brand_id !== null) {
             $products = product::where('brand_id', $brand_id)->get();
+        } else {
+            session()->flash('browse_error', 'Please select atleast one category or brand');
+            return redirect()->route('porto-home');
         }
         return view('themes.porto.product.all', ['products' => $products]);
     }

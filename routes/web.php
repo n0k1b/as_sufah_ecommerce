@@ -18,18 +18,18 @@ use Illuminate\Support\Facades\Route;
 */
 // Porto Theme
 //frontend start
-Route::get('/porto', [PortoFrontendController::class, 'viewIndex'])->name('porto-home');
-Route::get('/porto/product/view/{id}', [PortoFrontendController::class, 'viewSingleProduct'])->name('porto-view-single-product');
+Route::get('/', [PortoFrontendController::class, 'viewIndex'])->name('porto-home');
+Route::get('/product/view/{id}', [PortoFrontendController::class, 'viewSingleProduct'])->name('porto-view-single-product');
 //Route::view('/porto', 'themePorto.index');
 Route::get('/api_get_subcategories/{id}', [CategoryController::class, 'subcategoriesOfJSON'])->name('api_get_subcategories');
 
 // Product browse page
-Route::get('/porto/product/all/{cat}/{sub_cat}', [PortoFrontendController::class,'viewAllProducts'])->name('proto-view-all-products');
-Route::get('/porto/product/all', [PortoFrontendController::class,'viewAllProductsByBrandOrCategory'])->name('proto-view-all-products-byBrandOrCategory');
-Route::get('/porto/product/cart/add/{product_id}/{quantity}', [CartController::class, 'add_to_cart'])->name('porto-add-to-cart');
-Route::get('/porto/product/cart/details', [CartController::class, 'get_cart_details'])->name('porto-get-cart-details');
-Route::get('/porto/product/cart/remove/{product_id}', [CartController::class, 'delete_item'])->name('porto-remove-from-cart');
-Route::get('/porto/cart/checkout', [PortoFrontendController::class, 'viewCartCheckout'])->name('porto-view-cart-checkout');
+Route::get('/product/all/{cat}/{sub_cat}', [PortoFrontendController::class,'viewAllProducts'])->name('proto-view-all-products');
+Route::get('/product/all', [PortoFrontendController::class,'viewAllProductsByBrandOrCategory'])->name('proto-view-all-products-byBrandOrCategory');
+Route::get('/product/cart/add/{product_id}/{quantity}', [CartController::class, 'add_to_cart'])->name('porto-add-to-cart');
+Route::get('/product/cart/details', [CartController::class, 'get_cart_details'])->name('porto-get-cart-details');
+Route::get('/product/cart/remove/{product_id}', [CartController::class, 'delete_item'])->name('porto-remove-from-cart');
+Route::get('/cart/checkout', [PortoFrontendController::class, 'viewCartCheckout'])->name('porto-view-cart-checkout');
 
 
 
@@ -47,61 +47,61 @@ Route::get('/porto/cart/checkout', [PortoFrontendController::class, 'viewCartChe
 //     $exitCode = Artisan::call('cache:clear');
 //     // return what you want
 // });
-Route::get('/','FrontController@index');
-Route::get('get_all_category','FrontController@get_all_category')->name('get_all_category');
-Route::post('cart_add','FrontController@cart_add')->name('cart_add');
-Route::get('get_cart_count','FrontController@get_cart_count')->name('get_cart_count');
-Route::get('get_cart_box','FrontController@get_cart_box')->name('get_cart_box');
-Route::get('get_cart_data','FrontController@get_cart_data')->name('get_cart_data');
-Route::get('cart_delete/{id}','FrontController@cart_delete')->name('cart_delete');
-Route::get('view_cart','FrontController@view_cart')->name('view_cart');
-Route::get('get_all_cart_info','FrontController@get_all_cart_info');
-Route::post('cart_update','FrontController@cart_update');
-Route::get('show_cart_modal/{id}','FrontController@show_cart_modal')->name('show_cart_modal');
+// Route::get('/','FrontController@index');
+// Route::get('get_all_category','FrontController@get_all_category')->name('get_all_category');
+// Route::post('cart_add','FrontController@cart_add')->name('cart_add');
+// Route::get('get_cart_count','FrontController@get_cart_count')->name('get_cart_count');
+// Route::get('get_cart_box','FrontController@get_cart_box')->name('get_cart_box');
+// Route::get('get_cart_data','FrontController@get_cart_data')->name('get_cart_data');
+// Route::get('cart_delete/{id}','FrontController@cart_delete')->name('cart_delete');
+// Route::get('view_cart','FrontController@view_cart')->name('view_cart');
+// Route::get('get_all_cart_info','FrontController@get_all_cart_info');
+// Route::post('cart_update','FrontController@cart_update');
+// Route::get('show_cart_modal/{id}','FrontController@show_cart_modal')->name('show_cart_modal');
 
-Route::post('send_otp','FrontController@send_otp')->name('send_otp');
-Route::post('submit_otp','FrontController@submit_otp')->name('submit_otp');
-Route::get('logout','FrontController@logout')->name('logout');
-Route::view('otp','auth.save_name');
-
-
-
-
-Route::get('login', function () {
-    return view('auth.register');
-})->name('login');
+// Route::post('send_otp','FrontController@send_otp')->name('send_otp');
+// Route::post('submit_otp','FrontController@submit_otp')->name('submit_otp');
+// Route::get('logout','FrontController@logout')->name('logout');
+// Route::view('otp','auth.save_name');
 
 
 
-Route::get('order_tracking', function () {
-    return view('frontend.order_tracking');
-});
 
-Route::get('view_all/{type}','FrontController@view_all_product')->name('view_all');
-Route::get('get_all_product_view_all/{type}','FrontController@get_all_product_view_all');
-Route::get('view_all','FrontController@view_alll_category_product')->name('view_all_product');
-Route::post('search_product','FrontController@search_product')->name('search_product');
-Route::get('get_all_homepage_section/{type}','FrontController@get_all_homepage_section');
-
-Route::group(['middleware' => 'IsLoggedIn'], function()
-{
-   Route::get('checkout','FrontController@checkout');
-   Route::get('get_all_address','FrontController@get_all_address');
-   Route::post('add_address','FrontController@add_address');
-   Route::get('delete_address/{id}','FrontController@delete_address');
-   Route::post('update_address','FrontController@update_address');
-   Route::post('place_order','FrontController@place_order')->name('place_order');
-   Route::get('edit_address/{id}','FrontController@edit_address');
-   Route::get('order_list','FrontController@order_list');
-   Route::post('view_order_details','FrontController@view_order_details')->name('view_order_details');
-
-});
+// Route::get('login', function () {
+//     return view('auth.register');
+// })->name('login');
 
 
-Route::group(['middleware' => 'Isuser'], function()
-{
-    Route::post('submit_user_information','FrontController@submit_user_information')->name('submit_user_information');
-});
+
+// Route::get('order_tracking', function () {
+//     return view('frontend.order_tracking');
+// });
+
+// Route::get('view_all/{type}','FrontController@view_all_product')->name('view_all');
+// Route::get('get_all_product_view_all/{type}','FrontController@get_all_product_view_all');
+// Route::get('view_all','FrontController@view_alll_category_product')->name('view_all_product');
+// Route::post('search_product','FrontController@search_product')->name('search_product');
+// Route::get('get_all_homepage_section/{type}','FrontController@get_all_homepage_section');
+
+// Route::group(['middleware' => 'IsLoggedIn'], function()
+// {
+//    Route::get('checkout','FrontController@checkout');
+//    Route::get('get_all_address','FrontController@get_all_address');
+//    Route::post('add_address','FrontController@add_address');
+//    Route::get('delete_address/{id}','FrontController@delete_address');
+//    Route::post('update_address','FrontController@update_address');
+//    Route::post('place_order','FrontController@place_order')->name('place_order');
+//    Route::get('edit_address/{id}','FrontController@edit_address');
+//    Route::get('order_list','FrontController@order_list');
+//    Route::post('view_order_details','FrontController@view_order_details')->name('view_order_details');
+
+// });
+
+
+// Route::group(['middleware' => 'Isuser'], function()
+// {
+//     Route::post('submit_user_information','FrontController@submit_user_information')->name('submit_user_information');
+// });
 
 Route::view('admin_login','admin.auth.login');
 Route::post('admin_login','AdminController@login')->name('admin_login');
@@ -109,7 +109,7 @@ Route::post('admin_login','AdminController@login')->name('admin_login');
 
 Route::group(['prefix' => 'admin','middleware' => 'IsAdmin'], function()
 {
-    Route::get('/','AdminController@show_dashboard');
+    Route::get('/','AdminController@show_dashboard')->name('admin-dashboard');
 
     Route::get('logout_admin','AdminController@logout')->name('logout_admin');
 
