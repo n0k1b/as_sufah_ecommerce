@@ -17,7 +17,7 @@ function show_category_submenu(e) {
     get_all_subcategory(e.id).then(data => {
         sub_category_list = '';
         data.forEach(item => {
-            sub_category_list += `<li><a href="/ecommerce/porto/product/all/${e.id}/${item.id}">${item.name}</a></li>`
+            sub_category_list += `<li><a href="${Routes.viewAllProducts(e.id, item.id)}">${item.name}</a></li>`
         })
         document.querySelector('.sub-categories').innerHTML = sub_category_list
     })
@@ -61,3 +61,10 @@ function remove_nav_cart_product(id) {
         update_nav_cart();
     })
 }
+
+$(document).ready(function() {
+    $('.select-cateogory-select2').select2();
+});
+$(document).ready(function() {
+    $('.select-brand-select2').select2();
+});

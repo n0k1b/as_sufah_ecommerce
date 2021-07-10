@@ -38,24 +38,22 @@
                 <form action="{{ route('proto-view-all-products-byBrandOrCategory') }}" method="GET" class="find-form">
                     <h3>find a product</h3>
                     <div class="select-custom">
-                        <select class="form-control" id="byCategory" name="category">
-                            <option disabled="" selected="" hidden="">BY CATEGORY</option>
+                        <select class="select-cateogory-select2 form-control" name="category">
                             @foreach ($categories as $category)
-                                <option value={{ $category->id }}>{{ $category->name }}</option>
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="select-custom">
-                        <select class="form-control" id="byBrand" name="brand">
-                            <option disabled="" selected="" hidden="">BY BRAND</option>
+                        <select class="select-brand-select2 form-control" name="brand">
                             @foreach ($brands as $brand)
                                 <option value={{ $brand->id }}>{{ $brand->brand_name }}</option>
                             @endforeach
                         </select>
                     </div>
-                    <button type="submit">Browse</button>
+                    <button class="btn btn-primary" type="submit">Browse</button>
                 </form>
-                <div class="home-banner mb-2" style="background-image: url('{{ asset('/assets/porto-theme/images/banners/watch.png') }});">
+                <div class="home-banner mb-2">
                     <div class="row row-sm">
                         <div class="col-6" style="display : flex;justify-content: flex-end;">
                             <div class="banner-content">
@@ -175,7 +173,7 @@
         @foreach ($homepage_sections[$weekly_featured_section]->product_list as $product_list)
             <div class="product-default inner-icon inner-icon-inline  center-details">
                 <figure>
-                    <a href="product.html">
+                    <a href="{{ route('porto-view-single-product', ['id' => $product_list->product->id]) }}">
                         <img src="{{ asset($product_list->product->thumbnail_image) }}">
                     </a>
                     <div class="btn-icon-group">
@@ -192,22 +190,22 @@
                         </div><!-- End .product-ratings -->
                     </div><!-- End .product-container -->
                     <h2 class="product-title">
-                        <a href="product.html">{{ $product_list->product->name }}</a>
+                        <a href="{{ route('porto-view-single-product', ['id' => $product_list->product->id]) }}">{{ $product_list->product->name }}</a>
                     </h2>
                     <div class="price-box">
                         <span class="product-price">{{ $product_list->product->price }}</span>
                     </div><!-- End .price-box -->
                 </div><!-- End .product-details -->
             </div> 
-        @endforeach
-                       
+        @endforeach                      
         </div>
+        <a href="{{ route('proto-view-all-flashDeals') }}" class="btn btn-primary">View All</a> 
     </section>
     @endif
 
     
 
-    <section>
+    {{-- <section>
         <div class="home-banner banner-deals" style="background-image: url('{{ asset('/assets/porto-theme/images/banners/banner-deals.jpg') }});">
             <div class="banner-content">
                 <h3>never miss any deals</h3>
@@ -221,7 +219,7 @@
             </div>
         </div>
 
-    </section>
+    </section> --}}
 </div>
 @endsection
 

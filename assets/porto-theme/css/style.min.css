@@ -12410,13 +12410,14 @@ tbody .product-col {
     }
 }
 
-body>div.mfp-bg.mfp-newsletter.mfp-ready {
+
+/* body>div.mfp-bg.mfp-newsletter.mfp-ready {
     display: none;
 }
 
 body>div.mfp-wrap.mfp-close-btn-in.mfp-auto-cursor.mfp-newsletter.mfp-ready {
     display: none;
-}
+} */
 
 
 /*# sourceMappingURL=style.min.css.map */

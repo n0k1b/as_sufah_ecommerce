@@ -22,7 +22,7 @@
         };
         (function(d) {
             var wf = d.createElement('script'), s = d.scripts[0];
-            wf.src = "{{ asset('/assets/porto-theme/vendor/webfonts/webfont.js') }}"";
+            wf.src = "{{ asset('/assets/porto-theme/vendor/webfonts/webfont.js') }}";
             wf.async = true;
             s.parentNode.insertBefore(wf, s);
         })(document);
@@ -33,7 +33,8 @@
 
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{{ asset('assets/porto-theme/css/style.min.css') }}">
-    <link rel="stylesheet" type="text/css" href=" {{ asset('/assets/porto-theme/vendor/fontawesome/css/all.min.css') }}>
+    <link rel="stylesheet" type="text/css" href=" {{ asset('/assets/porto-theme/vendor/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
 </head>
 <body>
     <div class="page-wrapper">
@@ -53,10 +54,10 @@
                     <div class="header-right">
                         <nav class="main-nav">
                             <ul class="menu">
-                                <li><a href="my-account.html">My Account</a></li>
-                                <li><a href="#">My Wishlist</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="login.html">Login</a></li>
+                                {{-- <li><a href="#">My Account</a></li> --}}
+                                {{-- <li><a href="#">My Wishlist</a></li> --}}
+                                <li><a href="{{ route('proto-view-all-products', ['cat' => -1, 'sub_cat' => -1]) }}">SHOP</a></li>
+                                <li><a href="#">Login</a></li>
                             </ul>
                         </nav>
                         <div class="dropdown cart-dropdown">
@@ -96,12 +97,12 @@
                 <div class="container">
                     <nav class="main-nav">
                         <ul class="menu">
-                            <li><a href="index-2.html">Home</a></li>
+                            <li><a href="{{ route('porto-home') }}">Home</a></li>
                             <li>
                                 <?php 
                                     $loop_index = 0 
                                     ?>
-                                <a href="category.html">Categories</a>
+                                <a href="#">Categories</a>
                                 <div class="megamenu megamenu-fixed-width">
                                     <div class="row row-sm">
                                         <div class="col-lg-4">
@@ -130,14 +131,14 @@
                     <nav class="main-nav">
                         <ul class="menu">
                             <li class="">
-                                <a href="product.html">Brands</a>
+                                <a href="#">Brands</a>
                                 <div class="megamenu megamenu-fixed-width menu-right">
                                     <div class="row row-sm">
                                         <div class="col-lg-4">
                                             <a href="#" class="nolink">All Brands</a>
                                             <ul class="submenu">
                                                 @foreach ($brands as $brand)
-                                                    <li><a href="product.html">{{ $brand->brand_name }}</a></li>
+                                                    <li><a href="{{ route('view-all-products-byBrand', ['brand' => $brand->id]) }}">{{ $brand->brand_name }}</a></li>
                                                 @endforeach                                                
                                             </ul>
                                         </div><!-- End .col-lg-4 -->
@@ -147,11 +148,10 @@
                             <li class="sf-with-ul">
                                 <a href="#">Pages</a>
                                 <ul>
-                                    <li><a href="cart.html">Shopping Cart</a></li>
                                     <li><a href="{{ route('porto-view-cart-checkout') }}">Checkout</a></li>
                                     <li><a href="{{ route('admin-dashboard') }}">Admin Dashboard</a></li>
-                                    <li><a href="about.html">About Us</a></li>
-                                    <li><a href="contact.html">Contact Us</a></li>
+                                    {{-- <li><a href="about.html">About Us</a></li> --}}
+                                    {{-- <li><a href="contact.html">Contact Us</a></li> --}}
                                     <li><a href="#" class="login-link">Login</a></li>
                                 </ul>
                             </li>
@@ -226,9 +226,7 @@
                             <div class="widget">
                                 <h3 class="widget-title">about us</h3>
                                 <div class="widget-content">
-                                    <p style="margin-right: 8rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique augue eget enim 
-                                    feugiat blandit. Phasellus bibendum ex leo, at egestas lacus pellentesque in x leo, at 
-                                    egestas lacus.</p>
+                                    <p style="margin-right: 8rem;">Ecommerce store.</p>
                                 </div>
                             </div>
                         </div>
@@ -239,17 +237,17 @@
                                     <ul>
                                         <li class="subwidget">
                                             <h4 class="subwidget-title">address</h4>
-                                            <p>123 Street Name, City, England <br> Pintrest street oklar</p>
+                                            <p>{{ $company_info->address }}</p>
                                         </li>
                                     </ul>
                                     <ul>
                                         <li class="subwidget">
                                             <h4 class="subwidget-title">phone</h4>
-                                            <a href="#">Toll Free (123) 456-7890</a>
+                                            <a href="#">{{  $company_info->contact_no1 }}<br />{{  $company_info->contact_no2 }}</a>
                                         </li>
                                         <li class="subwidget">
                                             <h4 class="subwidget-title">Email</h4>
-                                            <a href="mailto:mail@example.com">mail@example.com</a>
+                                            <a href="mailto:mail@example.com">{{  $company_info->email }}</a>
                                         </li>
                                     </ul>   
                                 </div>
@@ -261,13 +259,14 @@
             <div class="footer-middle">
                 <div class="container">
                     <div class="row row-sm">
-                        <div class="col-md-4">
+                        {{-- <div class="col-md-4">
                             <div class="widget">
-                                <h3 class="widget-title">my account</h3>
+                                <h3 class="widget-title">My account</h3>
                                 <div class="widget-content row row-sm">
                                     <div class="col-xl-6">
                                         <ul>
-                                            <li><a href="about.html">About us</a></li>
+                                            <li><a href="#">About us</a></li>
+                                            <li><a href="#">About us</a></li>
                                             <li><a href="contact.html">Contact us</a></li>
                                             <li><a href="my-account.html">My account</a></li>
                                         </ul>
@@ -281,10 +280,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-md-6">
                             <div class="widget">
-                                <h3 class="widget-title">main features</h3>
+                                <h3 class="widget-title">Main features</h3>
                                 <div class="widget-content row row-sm">
                                     <div class="col-xl-6">
                                         <ul>
@@ -295,8 +294,7 @@
                                     </div>
                                     <div class="col-xl-6">
                                         <ul>
-                                            <li><a href="#">Powerful Admin Panel</a></li>
-                                            <li><a href="#">Mobile & Retino Optimized</a></li>
+                                            <li><a href="{{ route('admin-dashboard') }}">Admin Panel</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -330,7 +328,7 @@
                 <ul class="mobile-menu">
                     <li class="active"><a href="index-2.html">Home</a></li>
                     <li>
-                        <a href="category.html">Categories</a>
+                        <a href="">Categories</a>
                         <ul>
                             <li><a href="category.html">Full Width Banner</a></li>
                             <li><a href="category-banner-boxed-slider.html">Boxed Slider Banner</a></li>
@@ -470,6 +468,7 @@
     <script src="{{ asset('/assets/porto-theme/vendor/bootstrap/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('/assets/porto-theme/vendor/isotope-docs/isotope-docs.min.js') }}"></script>
     <script src="{{ asset('/assets/porto-theme/js/plugins.min.js') }}"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <!-- Main JS File -->
     <script src="{{ asset('/assets/porto-theme/js/routes.js') }}"></script>

@@ -16,13 +16,9 @@
 <nav aria-label="breadcrumb" class="breadcrumb-nav">
     <div class="container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('porto-home') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
             @if ($cat_name !== null)
             <li class="breadcrumb-item"><a href="#">{{ $cat_name }}</a></li>  
-            @elseif ($sub_cat_name !== null)
-            <li class="breadcrumb-item"><a href="#">{{ $sub_cat_name }}</a></li> 
-            @else 
-            <li class="breadcrumb-item"><a href="#">Shop</a></li> 
             @endif
         </ol>
     </div><!-- End .container -->
@@ -63,16 +59,16 @@
                 </div><!-- End .layout-modes --> --}}
             </nav>
 
-            <div class="row row-sm">=
-                @foreach ($products as $product)
+            <div class="row row-sm">
+                @foreach ($products as $item)
                     <div class="col-6 col-md-4 col-xl-3">
                         <div class="product-default inner-icon inner-icon-inline center-details">
                             <figure>
-                                <a href="{{ route('porto-view-single-product', ['id' => $product->id]) }}">
-                                    <img src="{{ asset($product->thumbnail_image) }}" style="height: 200px !important; width: auto !important;">
+                                <a href="{{ route('porto-view-single-product', ['id' => $item->product->id]) }}">
+                                    <img src="{{ asset($item->product->thumbnail_image) }}" style="height: 200px !important; width: auto !important;">
                                 </a>
                                 <div class="btn-icon-group">
-                                    <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal" onclick="handleAddToCart({{$product->id}})"><i class="icon-bag"></i></button>
+                                    <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal" onclick="handleAddToCart({{$item->product->id}})"><i class="icon-bag"></i></button>
                                     <a href="#" class="btn-icon btn-icon-wish"><i class="icon-heart"></i></a>
                                     <a href="ajax/product-quick-view.html" class="btn-icon btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a> 
                                 </div>
@@ -85,10 +81,10 @@
                                     </div><!-- End .product-ratings -->
                                 </div><!-- End .product-container -->
                                 <h2 class="product-title">
-                                    <a href="product.html">{{ $product->name }}</a>
+                                    <a href="product.html">{{ $item->product->name }}</a>
                                 </h2>
                                 <div class="price-box">
-                                    <span class="product-price">${{ $product->price }}</span>
+                                    <span class="product-price">${{ $item->product->price }}</span>
                                 </div><!-- End .price-box -->
                             </div><!-- End .product-details -->
                         </div>

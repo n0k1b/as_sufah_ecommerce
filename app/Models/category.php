@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class category extends Model
 {
     protected $guarded =[];
+    public $table = 'categories';
     public function domain()
     {
         return $this->belongsTo('App\Models\domain','domain_id','id');

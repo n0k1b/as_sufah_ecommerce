@@ -141,7 +141,7 @@
                         <h3>Summary</h3>
 
                         <h4>
-                            <a data-toggle="collapse" href="#order-cart-section" class="collapsed" role="button" aria-expanded="false" aria-controls="order-cart-section">2 products in Cart</a>
+                            <a data-toggle="collapse" href="#order-cart-section" class="collapsed" role="button" aria-expanded="false" aria-controls="order-cart-section">{{count(session()->get('cart'))}} products in Cart</a>
                         </h4>
 
                         <div class="collapse" id="order-cart-section">
