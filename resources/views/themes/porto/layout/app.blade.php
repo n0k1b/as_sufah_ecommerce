@@ -12,7 +12,7 @@
     <meta name="keywords" content="HTML5 Template" />
     <meta name="description" content="Porto - Bootstrap eCommerce Template">
     <meta name="author" content="SW-THEMES">
-        
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('/assets/porto-theme/images/icons/favicon.ico') }}">
 
@@ -27,7 +27,7 @@
             s.parentNode.insertBefore(wf, s);
         })(document);
     </script>
-    
+
     <!-- Plugins CSS File -->
     <link rel="stylesheet" href="{{ asset('/assets/porto-theme/vendor/bootstrap/bootstrap.min.css') }}">
 
@@ -99,8 +99,8 @@
                         <ul class="menu">
                             <li><a href="{{ route('porto-home') }}">Home</a></li>
                             <li>
-                                <?php 
-                                    $loop_index = 0 
+                                <?php
+                                    $loop_index = 0
                                     ?>
                                 <a href="#">Categories</a>
                                 <div class="megamenu megamenu-fixed-width">
@@ -109,12 +109,12 @@
                                             <ul class="submenu categories">
                                                 @foreach($categories as $cat)
                                                     <li id="{{$cat->id}}" onmouseover="show_category_submenu(this)"><a href="{{ route('proto-view-all-products', ['cat' => $cat->id, 'sub_cat' => -1]) }}">{{ $cat->name }}</a></li>
-                                                @endforeach                                               
+                                                @endforeach
                                             </ul>
                                         </div>
                                         <div class="col-lg-4">
                                             <ul class="submenu sub-categories">
-                                                 
+
                                             </ul>
                                         </div>
                                         <div class="col-lg-4 image-container">
@@ -139,7 +139,7 @@
                                             <ul class="submenu">
                                                 @foreach ($brands as $brand)
                                                     <li><a href="{{ route('view-all-products-byBrand', ['brand' => $brand->id]) }}">{{ $brand->brand_name }}</a></li>
-                                                @endforeach                                                
+                                                @endforeach
                                             </ul>
                                         </div><!-- End .col-lg-4 -->
                                     </div><!-- End .row -->
@@ -249,9 +249,9 @@
                                             <h4 class="subwidget-title">Email</h4>
                                             <a href="mailto:mail@example.com">{{  $company_info->email }}</a>
                                         </li>
-                                    </ul>   
+                                    </ul>
                                 </div>
-                            </div>                            
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -467,7 +467,7 @@
     <script src="{{ asset('/assets/porto-theme/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('/assets/porto-theme/vendor/bootstrap/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('/assets/porto-theme/vendor/isotope-docs/isotope-docs.min.js') }}"></script>
-    <script src="{{ asset('/assets/porto-theme/js/plugins.min.js') }}"></script>    
+    <script src="{{ asset('/assets/porto-theme/js/plugins.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <!-- Main JS File -->
@@ -475,7 +475,7 @@
     <script src="{{ asset('/assets/porto-theme/js/render.js') }}"></script>
     <script src="{{ asset('/assets/porto-theme/js/components/cart.js') }}"></script>
 
-    <script src="{{ asset('/assets/porto-theme/js/main.min.js') }}"></script>
+    <script src="{{ asset('/assets/porto-theme/js') }}/main.min.js?{{ time() }}"></script>
     <script src="{{ asset('/assets/porto-theme/js/index.js') }}"></script>
 
     @yield('page-script')
