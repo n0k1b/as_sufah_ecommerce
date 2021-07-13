@@ -151,8 +151,12 @@
     
     @if ($weekly_featured_section !== -1)
     <section class="featured-products">
-        <h2>weekly featured products</h2>
-
+        <div class="featured-products-title">
+            <h2>weekly featured products </h2>
+            <a href="{{ route('proto-view-all-flashDeals') }}">View All <i class="fas fa-chevron-right"></i></a>
+        </div>
+        
+        
         <div class="owl-carousel owl-theme" data-toggle="owl" data-owl-options="{
             'loop': false,
             'dots': false,
@@ -178,8 +182,8 @@
                     </a>
                     <div class="btn-icon-group">
                         <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal" onclick="handleAddToCart({{$product_list->product->id}})"><i class="icon-bag"></i></button>
-                        <a href="#" class="btn-icon btn-icon-wish"><i class="icon-heart"></i></a>
-                        <a href="ajax/product-quick-view.html" class="btn-icon btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a> 
+                        {{-- <a href="#" class="btn-icon btn-icon-wish"><i class="icon-heart"></i></a>
+                        <a href="ajax/product-quick-view.html" class="btn-icon btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a>  --}}
                     </div>
                 </figure>
                 <div class="product-details">
@@ -199,7 +203,7 @@
             </div> 
         @endforeach                      
         </div>
-        <a href="{{ route('proto-view-all-flashDeals') }}" class="btn btn-primary">View All</a> 
+        {{-- <a href="{{ route('proto-view-all-flashDeals') }}" class="btn btn-primary">View All</a>  --}}
     </section>
     @endif
 
