@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CitroenFrontendController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\PortoFrontendController;
 use Illuminate\Support\Facades\Route;
@@ -18,13 +19,13 @@ use Illuminate\Support\Facades\Route;
 */
 // Porto Theme
 //frontend start
-Route::get('/', [PortoFrontendController::class, 'viewIndex'])->name('porto-home');
-Route::get('/product/view/{id}', [PortoFrontendController::class, 'viewSingleProduct'])->name('porto-view-single-product');
+Route::get('/', [CitroenFrontendController::class, 'viewIndex'])->name('home');
+Route::get('/product/view/{id}', [CitroenFrontendController::class, 'viewSingleProduct'])->name('view-single-product');
 //Route::view('/porto', 'themePorto.index');
 Route::get('/api_get_subcategories/{id}', [CategoryController::class, 'subcategoriesOfJSON'])->name('api_get_subcategories');
 
 // Product browse page
-Route::get('/product/all/{cat}/{sub_cat}', [PortoFrontendController::class,'viewAllProducts'])->name('proto-view-all-products');
+Route::get('/product/all/{cat}/{sub_cat}', [CitroenFrontendController::class,'viewAllProducts'])->name('view-all-products');
 Route::get('/product/bybrand/all/{brand}', [PortoFrontendController::class,'viewProductByBrand'])->name('view-all-products-byBrand');
 Route::get('/product/filtered_search/all', [PortoFrontendController::class,'viewAllProductsByBrandOrCategory'])->name('proto-view-all-products-byBrandOrCategory');
 Route::get('/product/flash_deals/all', [PortoFrontendController::class,'viewAllFlashDeals'])->name('proto-view-all-flashDeals');
@@ -34,6 +35,7 @@ Route::get('/product/cart/remove/{product_id}', [CartController::class, 'delete_
 Route::get('/cart/checkout', [PortoFrontendController::class, 'viewCartCheckout'])->name('porto-view-cart-checkout');
 
 
+Route::get('/product/sortByOrderCount', [CitroenFrontendController::class, 'sortProductByOrderCount'])->name('sortProductByOrderCount');
 
 //test route start
 
