@@ -71,7 +71,14 @@ class CitroenFrontendController extends Controller
             });
         }
         $banners = banner::all();
-        return view('themes.citroen.product.all', ['products' => $products, 'recommended_product'=>$recommended_product, 'cat_name' => $cat_name, 'sub_cat_name' => $sub_cat_name, 'banners' => $banners]);
+        return view('themes.citroen.product.all', ['products' => $products, 
+            'recommended_product'=>$recommended_product, 
+            'cat_name' => $cat_name, 
+            'sub_cat_name' => $sub_cat_name, 
+            'banners' => $banners,
+            'cat' => $cat,
+            'sub_cat' => $sub_cat
+        ]);
     }
     function sortProductByOrderCount()
     {

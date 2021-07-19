@@ -10,12 +10,12 @@
                     <!-- Breadcrumbs -->
                     <div class="breadcrumbs">
                         <ul>
-                            <li class="home"> <a href="index-2.html" title="Go to Home Page">Home</a> <span>/</span> </li>
+                            <li class="home"> <a href="{{ route('home') }}" title="Go to Home Page">Home</a> <span>/</span> </li>
                             <li> <a href="{{ route('view-all-products', ['cat' => $product->category->id, 'sub_cat' => -1]) }}"
                                     title="">{{ $product->category->name }}</a> <span>/ </span> </li>
                             <li> <a href="{{ route('view-all-products', ['cat' => $product->category->id, 'sub_cat' => $product->sub_category->id]) }}"
                                     title="">{{ $product->sub_category->name }}</a> <span>/</span> </li>
-                            <li> <strong>Motherboard</strong> </li>
+                            <li> <strong>{{ $product->name }}</strong> </li>
                         </ul>
                     </div>
                     <!-- Breadcrumbs End -->
@@ -68,15 +68,13 @@
 
                                             <div class="add-to-box">
                                                 <div class="add-to-cart">
-                                                    <button onClick="productAddToCartForm.submit(this)"
+                                                    <button onclick="handleAddToCart({{$product->id}})"
                                                         class="button btn-cart" title="Add to Cart" type="button">Add to
                                                         Cart</button>
                                                     <button onClick="productAddToCartForm.submit(this)"
                                                         class="button btn-buy" title="Add to Cart" type="button">Buy
                                                         Now</button>
-
                                                 </div>
-
                                             </div>
                                             {{-- <ul class="add-to-links">
                             <li> <a class="link-wishlist" href="wishlist.html"><span>Add to Wishlist</span></a></li>
@@ -84,9 +82,9 @@
                             </ul> --}}
                                         </div>
                                         <div class="product-shop col-lg- col-sm-7 col-xs-12">
-                                            <div class="product-next-prev"> <a class="product-next"
+                                            {{-- <div class="product-next-prev"> <a class="product-next"
                                                     href="#"><span></span></a> <a class="product-prev"
-                                                    href="#"><span></span></a> </div>
+                                                    href="#"><span></span></a> </div> --}}
                                             <div class="brand">{{ $product->brand->name }}</div>
                                             <div class="product-name">
                                                 <h1>{{ $product->name }}</h1>
@@ -103,9 +101,9 @@
                                                         <p class="availability in-stock">
                                                             <span>{{ $product->stock->stock_amount }} in stock</span></p>
                                                     @endif
-                                                    {{-- <p class="special-price"> <span class="price-label">Special Price</span> <span id="product-price-48" class="price"> $309.99 </span> </p> --}}
-                                                    <p class="old-price"> <span class="price-label">Regular Price:</span>
-                                                        <span class="price"> tk{{ $product->price }} </span> </p>
+                                                    <p class="special-price"> <span class="price-label">Special Price</span> <span id="product-price-48" class="price"> tk{{ $product->price }} </span> </p>
+                                                    {{-- <p class="old-price"> <span class="price-label">Regular Price:</span>
+                                                        <span class="price"> tk{{ $product->price }} </span> </p> --}}
                                                 </div>
                                             </div>
 

@@ -10,10 +10,10 @@
             <ul>
               <li class="home"> <a href="index-2.html" title="Go to Home Page">Home</a> <span>/</span> </li>
               @if($cat_name !== null)
-              <li> <a href="grid.html" title="">{{ $cat_name }}</a> <span>/ </span> </li>
+              <li> <a href="{{ route('view-all-products', ['cat' => $cat, 'sub_cat' => -1]) }}" title="">{{ $cat_name }}</a> <span>/ </span> </li>
               @endif
               @if($sub_cat_name !== null)
-              <li> <a href="grid.html" title="">{{ $sub_cat_name }}</a> <span>/</span> </li>
+              <li> <a href="{{ route('view-all-products', ['cat' => $cat, 'sub_cat' => $sub_cat]) }}" title="">{{ $sub_cat_name }}</a> <span>/</span> </li>
               @endif
             </ul>
           </div>
@@ -59,8 +59,8 @@
             </div>
           </div>
           <div class="page-title">
-            <h2> Computers </h2>
-            <p class="font-size-14 text-gray-90 mb-0">Showing 1–35 of 62 results</p>
+            <h2> {{ $cat_name }} </h2>
+            <p class="font-size-14 text-gray-90 mb-0">Showing {{ count($products) }}</p>
           </div>
           <article class="col-main">
           <div class="pro-listing">
@@ -181,7 +181,7 @@
                   <div class="card-body text-muted">
                     <ul class="list-unstyled">
                         @foreach ($category->sub_category as $sub_cat)
-                            <li> <a href="#">{{ $sub_cat->name }}</a></li>
+                            <li> <a href="{{ route('view-all-products', ['cat' => $cat, 'sub_cat' => $sub_cat]) }}">{{ $sub_cat->name }}</a></li>
                         @endforeach
                     </ul>
                   </div>

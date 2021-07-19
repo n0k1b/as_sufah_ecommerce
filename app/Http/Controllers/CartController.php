@@ -15,7 +15,7 @@ class CartController extends Controller
             $cart = [];
         }
         if(isset($cart[$product_id])) {
-            $cart[$product_id]['quantity'] = $quantity;
+            $cart[$product_id]['quantity'] += $quantity;
         } else {
             $product = product::where('id', $product_id)->first();
             $props = Array(

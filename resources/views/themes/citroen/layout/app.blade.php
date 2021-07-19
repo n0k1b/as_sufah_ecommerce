@@ -40,7 +40,7 @@
         <div class="row"> 
           <!-- Header Language -->
           <div class="col-xs-12 col-sm-4 col-md-6 col-lg-6 pull-left">
-            <div class="dropdown block-language-wrapper"> <a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="images/english.png" alt="language"> English <span class="caret"></span> </a>
+            <div class="dropdown block-language-wrapper"> <a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="{{ asset('assets/citroen-theme/images/english.png') }}" alt="language"> English <span class="caret"></span> </a>
               <ul class="dropdown-menu" role="menu">
                 <li role="presentation"> <a href="#"><img src="{{ asset('images/english.png') }}" alt="language"> English </a> </li>
                 <li role="presentation"> <a href="#"><img src="{{ asset('images/francais.png') }}" alt="language"> French </a> </li>
@@ -91,7 +91,7 @@
       <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 logo-block"> 
           <!-- Header Logo -->
-          <div class="logo"> <a title="Citroen" href="index-2.html"><img alt="Citroen" src="{{ asset('/image/organization_logo').'/'.$logo }}" height="80px"> </a> </div>
+          <div class="logo"> <a title="Citroen" href="{{ route('home') }}"><img alt="Citroen" src="{{ asset('/image/organization_logo').'/'.$logo }}" height="80px"> </a> </div>
           <!-- End Header Logo --> 
         </div>
         <div class="col-lg-7 col-md-6 col-sm-6 col-xs-3 hidden-xs category-search-form">
@@ -127,14 +127,14 @@
           <div class="top-cart-contain"> 
             <!-- Top Cart -->
             <div class="mini-cart">
-              <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"> <a href="shopping_cart.html"><span>Shopping Cart</span> <span class="cart_count">2</span>
-                <div class="price">$4580</div>
+              <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"> <a href="shopping_cart.html"><span>Shopping Cart</span> <span class="cart_count" id="nav-cart-count">2</span>
+                <div class="price" id="nav-cart-total-price">$4580</div>
                 </a> </div>
               <div>
                 <div class="top-cart-content"> 
                   <!--block-subtitle-->
                   <ul class="mini-products-list" id="cart-sidebar">
-                    <li class="item first">
+                    {{-- <li class="item first">
                       <div class="item-inner"> <a class="product-image" title="Retis lapen casen" href="#l"><img alt="Retis lapen casen" src="{{ asset('assets/citroen-theme/products-images/product6.jpg') }}"> </a>
                         <div class="product-details">
                           <div class="access"><a class="btn-remove1" title="Remove This Item" href="#">Remove</a> </div>
@@ -149,7 +149,7 @@
                           <p class="product-name"><a href="#">Siomons Galaxy N31 Ocean Blue, 8GB RAM, 128GB Storag</a> </p>
                           1 x <span class="price">$80.00</span> </div>
                       </div>
-                    </li>
+                    </li> --}}
                   </ul>
                   <!--actions-->
                   <div class="actions">
@@ -467,6 +467,10 @@
 <!-- JavaScript --> 
 
 <script src="{{ asset('assets/citroen-theme/js/routes.js') }}"></script> 
+<script src="{{ asset('assets/citroen-theme/js/components/cart.js') }}"></script> 
+<script src="{{ asset('assets/citroen-theme/js/render.js') }}"></script> 
+<script src="{{ asset('assets/citroen-theme/js/main.js') }}"></script> 
+
 <script src="{{ asset('assets/citroen-theme/js/jquery-3.2.1.min.js') }}"></script> 
 <script src="{{ asset('assets/citroen-theme/js/bootstrap.min.js') }}"></script> 
 <script src="{{ asset('assets/citroen-theme/js/revslider.js') }}"></script> 

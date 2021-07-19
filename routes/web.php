@@ -29,10 +29,10 @@ Route::get('/product/all/{cat}/{sub_cat}', [CitroenFrontendController::class,'vi
 Route::get('/product/bybrand/all/{brand}', [PortoFrontendController::class,'viewProductByBrand'])->name('view-all-products-byBrand');
 Route::get('/product/filtered_search/all', [PortoFrontendController::class,'viewAllProductsByBrandOrCategory'])->name('proto-view-all-products-byBrandOrCategory');
 Route::get('/product/flash_deals/all', [PortoFrontendController::class,'viewAllFlashDeals'])->name('proto-view-all-flashDeals');
-Route::get('/product/cart/add/{product_id}/{quantity}', [CartController::class, 'add_to_cart'])->name('porto-add-to-cart');
-Route::get('/product/cart/details', [CartController::class, 'get_cart_details'])->name('porto-get-cart-details');
-Route::get('/product/cart/remove/{product_id}', [CartController::class, 'delete_item'])->name('porto-remove-from-cart');
-Route::get('/cart/checkout', [PortoFrontendController::class, 'viewCartCheckout'])->name('porto-view-cart-checkout');
+Route::get('/product/cart/add/{product_id}/{quantity}', [CartController::class, 'add_to_cart'])->name('add-to-cart');
+Route::get('/product/cart/details', [CartController::class, 'get_cart_details'])->name('get-cart-details');
+Route::get('/product/cart/remove/{product_id}', [CartController::class, 'delete_item'])->name('remove-from-cart');
+Route::get('/cart/checkout', [PortoFrontendController::class, 'viewCartCheckout'])->name('view-cart-checkout');
 
 
 Route::get('/product/sortByOrderCount', [CitroenFrontendController::class, 'sortProductByOrderCount'])->name('sortProductByOrderCount');

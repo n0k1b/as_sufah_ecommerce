@@ -1,8 +1,7 @@
-const routes = {
-    sortProductByOrderCount: (data => `/product/sortByOrderCount/${data.cat_id}`)
-}
-async function callApi(url) {
-    let response = await fetch(url)
-    let data = await response.json()
-    return data
+const baseURL = 'http://localhost/ecommerce'
+const Routes = {
+    addToCart: ((product_id, quantity) => `${baseURL}/product/cart/add/${product_id}/${quantity}`),
+    getCartDetails: `${baseURL}/product/cart/details`,
+    removeFromCart: (product_id => `${baseURL}/product/cart/remove/${product_id}`),
+    viewAllProducts: ((id, item_id) => `${baseURL}/product/all/${id}/${item_id}`)
 }
