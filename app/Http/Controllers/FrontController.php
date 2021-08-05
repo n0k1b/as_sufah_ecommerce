@@ -155,7 +155,7 @@ class FrontController extends Controller
     {
         $banners = banner::where('status',1)->orderBy('order')->get();
         $categories = category::get();
-        $homepage_section_content = homepage_section::where('status',1)->orderBy('section_order')->get();
+        $homepage_section_content = homepage_section::where('status',1)->where('delete_status',0)->orderBy('section_order')->get();
         $company_info = company_info::first();
 
 

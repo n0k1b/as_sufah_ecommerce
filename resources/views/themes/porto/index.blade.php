@@ -1,15 +1,6 @@
 @extends('themes.porto.layout.app')
-<?php
-    // Please Change the section name to choose section product for home 
-    $section_name = 'Flash deals';
-    $weekly_featured_section = -1;
-        foreach ($homepage_sections as $key => $section) {
-            if($section->section_name === $section_name) {
-                $weekly_featured_section = $key;
-            }
-        } 
-    ?>
-@section('content') 
+
+@section('content')
 <div class="container">
     <section>
         <div class="row row-sm align-items-center">
@@ -34,7 +25,7 @@
                         {{ session()->get('browse_error') }}
                     </div>
                 @endif
-                
+
                 <form action="{{ route('proto-view-all-products-byBrandOrCategory') }}" method="GET" class="find-form">
                     <h3>find a product</h3>
                     <div class="select-custom">
@@ -85,7 +76,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col-6 col-md-5">
+            <div class="col-6 col-md-4">
                 <div class="product-category content-left-bottom hidden-count overlay-darker">
                     <a href="{{ route('proto-view-all-products', ['cat' => $categories[1]->id, 'sub_cat' => -1]) }}">
                         <figure>
@@ -97,66 +88,73 @@
                     </a>
                 </div>
             </div>
-            <div class="col-6 col-md-3">
+
+            <div class="col-6 col-md-4">
                 <div class="product-category content-left-bottom hidden-count overlay-darker">
-                    <a href="{{ route('proto-view-all-products', ['cat' => $categories[2]->id, 'sub_cat' => -1]) }}">
+                    <a href="{{ route('proto-view-all-products', ['cat' => $categories[0]->id, 'sub_cat' => -1]) }}">
                         <figure>
-                            <img src="{{ asset($categories[2]->image) }}">
+                            <img src="{{ asset($categories[0]->image) }}">
                         </figure>
                         <div class="category-content">
-                            <h3>{{ $categories[2]->name}}</h3>
+                            <h3>{{ $categories[0]->name}}</h3>
                         </div>
                     </a>
                 </div>
             </div>
             <div class="col-6 col-md-4">
                 <div class="product-category content-left-bottom hidden-count overlay-darker">
-                    <a href="{{ route('proto-view-all-products', ['cat' => $categories[3]->id, 'sub_cat' => -1]) }}">
+                    <a href="{{ route('proto-view-all-products', ['cat' => $categories[1]->id, 'sub_cat' => -1]) }}">
                         <figure>
-                            <img src="{{ asset($categories[3]->image) }}">
+                            <img src="{{ asset($categories[1]->image) }}">
                         </figure>
                         <div class="category-content">
-                            <h3>{{ $categories[3]->name}}</h3>
+                            <h3>{{ $categories[1]->name}}</h3>
                         </div>
                     </a>
                 </div>
             </div>
-            <div class="col-6 col-md-3">
+
+
+            <div class="col-6 col-md-4">
                 <div class="product-category content-left-bottom hidden-count overlay-darker">
-                    <a href="{{ route('proto-view-all-products', ['cat' => $categories[4]->id, 'sub_cat' => -1]) }}">
+                    <a href="{{ route('proto-view-all-products', ['cat' => $categories[0]->id, 'sub_cat' => -1]) }}">
                         <figure>
-                            <img src="{{ asset($categories[4]->image) }}">
+                            <img src="{{ asset($categories[0]->image) }}">
                         </figure>
                         <div class="category-content">
-                            <h3>{{ $categories[4]->name}}</h3>
+                            <h3>{{ $categories[0]->name}}</h3>
                         </div>
                     </a>
                 </div>
             </div>
-            <div class="col-6 col-md-5">
+            <div class="col-6 col-md-4">
                 <div class="product-category content-left-bottom hidden-count overlay-darker">
-                    <a href="{{ route('proto-view-all-products', ['cat' => $categories[5]->id, 'sub_cat' => -1]) }}">
+                    <a href="{{ route('proto-view-all-products', ['cat' => $categories[1]->id, 'sub_cat' => -1]) }}">
                         <figure>
-                            <img src="{{ asset($categories[5]->image) }}">
+                            <img src="{{ asset($categories[1]->image) }}">
                         </figure>
                         <div class="category-content">
-                            <h3>{{ $categories[5]->name}}</h3>
+                            <h3>{{ $categories[1]->name}}</h3>
                         </div>
                     </a>
                 </div>
             </div>
+
+
+
         </div>
     </section>
 
-    
-    @if ($weekly_featured_section !== -1)
+
+    @foreach($homepage_section_content as $section_product)
+
     <section class="featured-products">
         <div class="featured-products-title">
-            <h2>weekly featured products </h2>
+            <h2>{{ $section_product->section_name }}</h2>
             <a href="{{ route('proto-view-all-flashDeals') }}">View All <i class="fas fa-chevron-right"></i></a>
         </div>
-        
-        
+
+
         <div class="owl-carousel owl-theme" data-toggle="owl" data-owl-options="{
             'loop': false,
             'dots': false,
@@ -174,7 +172,7 @@
                 }
             }
         }">
-        @foreach ($homepage_sections[$weekly_featured_section]->product_list as $product_list)
+        @foreach($section_product->product_list as $product_list)
             <div class="product-default inner-icon inner-icon-inline  center-details">
                 <figure>
                     <a href="{{ route('porto-view-single-product', ['id' => $product_list->product->id]) }}">
@@ -200,14 +198,16 @@
                         <span class="product-price">{{ $product_list->product->price }}</span>
                     </div><!-- End .price-box -->
                 </div><!-- End .product-details -->
-            </div> 
-        @endforeach                      
+            </div>
+        @endforeach
         </div>
         {{-- <a href="{{ route('proto-view-all-flashDeals') }}" class="btn btn-primary">View All</a>  --}}
     </section>
-    @endif
 
-    
+    @endforeach
+
+
+
 
     {{-- <section>
         <div class="home-banner banner-deals" style="background-image: url('{{ asset('/assets/porto-theme/images/banners/banner-deals.jpg') }});">

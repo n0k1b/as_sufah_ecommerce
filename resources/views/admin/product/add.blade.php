@@ -50,26 +50,6 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <label>Warehouse</label>
-                                    <select class="form-control select2"  name="warehouse_id">
-                                        <option disabled selected>Select Warehouse</option>
-                                        @foreach ($warehouses as $data )
-                                            <option value="{{ $data->id }}">{{ $data->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <label>Sub Category</label>
-                                    <select class="form-control select2" id="sub_category" name="sub_category_id">
-                                        <option>Select Category First</option>
-                                    </select>
-                                </div>
-                            </div>
-
 
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="form-group">
@@ -109,20 +89,15 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-6 col-md-6 col-sm-6">
+                            {{-- <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label class="form-label">Product Stock in Unit</label>
                                     <input type="number" class="form-control" name="unit_stock" placeholder="100" value="{{ old('unit_stock') }}" />
                                 </div>
-                            </div>
+                            </div> --}}
 
 
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <label class="form-label">Product Net Weight (In Gram)</label>
-                                    <input type="text" class="form-control" name="net_weight" placeholder="1000" value="{{ old('net_weight') }}" />
-                                </div>
-                            </div>
+
 
                             @if($size_status ==1)
                             <div class="col-lg-6 col-md-6 col-sm-6">

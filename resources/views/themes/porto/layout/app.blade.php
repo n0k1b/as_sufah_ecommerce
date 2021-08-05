@@ -478,10 +478,7 @@
     <script src="{{ asset('/assets/porto-theme/vendor/bootstrap/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('/assets/porto-theme/vendor/isotope-docs/isotope-docs.min.js') }}"></script>
     <script src="{{ asset('/assets/porto-theme/js/plugins.min.js') }}"></script>
-<<<<<<< HEAD
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-=======
->>>>>>> cf1d3f4df1a89beb7aca25100b1a41741b5eb537
 
     <!-- Main JS File -->
     <script src="{{ asset('/assets/porto-theme/js/routes.js') }}"></script>

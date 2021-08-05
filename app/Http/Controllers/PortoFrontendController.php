@@ -27,10 +27,15 @@ class PortoFrontendController extends Controller
     }
     function viewIndex()
     {
-        $banners = banner::all();
-        $homepage_sections = homepage_section::with('product_list')->get();
+       // $banners = banner::all();
+       // $homepage_sections = homepage_section::with('product_list')->get();
+       $banners = banner::where('status',1)->orderBy('order')->get();
+       $categories = category::get();
+       $homepage_section_content = homepage_section::where('status',1)->where('delete_status',0)->orderBy('section_order')->get();
+       $company_info = company_info::first();
         //dd($homepage_sections);
-        return view('themes.porto.index', ['banners' => $banners, 'homepage_sections' => $homepage_sections]);
+        return view ('themes.porto.index',compact('banners','categories','homepage_section_content','company_info'));
+       // return view('themes.porto.index', ['banners' => $banners, 'homepage_sections' => $homepage_sections]);
     }
     function viewAllProducts($cat, $sub_cat)
     {
@@ -41,11 +46,11 @@ class PortoFrontendController extends Controller
         $sub_cat_name = null;
         if($cat !== '-1') {
             $cat_name = category::where('id', $cat)->first()->name;
-        } 
+        }
         if($sub_cat !== '-1') {
             $sub_cat_name = sub_category::where('id', $sub_cat)->first()->name;
-        }        
-        
+        }
+
         if($sub_cat === '-1' && $cat !== '-1') {
             $products = product::where('category_id', (int)$cat)->get();
         } else if($cat === '-1' && $sub_cat === '-1') {
@@ -54,7 +59,7 @@ class PortoFrontendController extends Controller
         } else {
             $products = product::where('sub_category_id', (int)$sub_cat)->get();
         }
-        
+
         return view('themes.porto.product.all', ['products' => $products, 'cat_name' => $cat_name, 'sub_cat_name' => $sub_cat_name]);
     }
     function viewProductByBrand($brand)
@@ -93,7 +98,7 @@ class PortoFrontendController extends Controller
         $product = product::where('id', (int)$id)->with('images')->first();
         return view('themes.porto.product.single', ['product' => $product]);
     }
-    
+
     function viewCartCheckout()
     {
         return view('themes.porto.cart-checkout');

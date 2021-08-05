@@ -1,7 +1,7 @@
 <?php
-  $with_domain_status = 0;
-  $user_id = auth()->user()->id;
-  $user_role = auth()->user()->role;
+   $with_domain_status = 0;
+  $user_id = Auth::guard('admin')->user()->id;
+  $user_role = Auth::guard('admin')->user()->role;
   $role_id = DB::table('roles')->where('name',$user_role)->first()->id;
   $role_permission = DB::table('role_permisiions')->where('role_id',$role_id)->pluck('content_name')->toArray();
  //file_put_contents('role.txt',json_encode($role_permission));
@@ -126,10 +126,9 @@
 													<tr>
 														<th>#</th>
 														<th>Category Name</th>
-                                                        <th>Sub Category Name</th>
 
                                                         <th>Product Name</th>
-                                                        <th>Warehouse</th>
+
                                                         <th>Image</th>
                                                         <th>Unit Price</th>
 
@@ -191,48 +190,48 @@
 
       var table = $('#product').DataTable({
         //dom: '<"row"lfB>rtip',
-       dom: 'Blfrtip',
-        buttons: [
-                {
-                    extend: 'pdf',
-                    text: 'PDF',
-                    exportOptions: {
-                        columns: ':visible:not(.not-exported)',
-                        rows: ':visible',
+       //dom: 'Blfrtip',
+        // buttons: [
+        //         {
+        //             extend: 'pdf',
+        //             text: 'PDF',
+        //             exportOptions: {
+        //                 columns: ':visible:not(.not-exported)',
+        //                 rows: ':visible',
 
-                    },
+        //             },
 
-                },
-                // {
-                //     extend: 'csv',
-                //     text: 'CSV',
-                //     exportOptions: {
-                //         columns: ':visible:not(.not-exported)',
-                //         rows: ':visible',
-                //         stripHtml: true,
-                //         format: {
-                //             body: function ( data, row, column, node ) {
-                //                 if (column === 0 && (data.toString().indexOf('<img src=') !== -1)) {
-                //                     var regex = /<img.*?src=['"](.*?)['"]/;
-                //                     data = regex.exec(data)[1];
-                //                 }
-                //                 return data;
-                //             }
-                //         }
-                //     }
-                // },
-                {
-                    extend: 'print',
-                    text: 'Print',
-                    exportOptions: {
-                        columns: ':visible:not(.not-exported)',
-                        rows: ':visible',
-                        stripHtml: false,
-                    },
+        //         },
+        //         // {
+        //         //     extend: 'csv',
+        //         //     text: 'CSV',
+        //         //     exportOptions: {
+        //         //         columns: ':visible:not(.not-exported)',
+        //         //         rows: ':visible',
+        //         //         stripHtml: true,
+        //         //         format: {
+        //         //             body: function ( data, row, column, node ) {
+        //         //                 if (column === 0 && (data.toString().indexOf('<img src=') !== -1)) {
+        //         //                     var regex = /<img.*?src=['"](.*?)['"]/;
+        //         //                     data = regex.exec(data)[1];
+        //         //                 }
+        //         //                 return data;
+        //         //             }
+        //         //         }
+        //         //     }
+        //         // },
+        //         {
+        //             extend: 'print',
+        //             text: 'Print',
+        //             exportOptions: {
+        //                 columns: ':visible:not(.not-exported)',
+        //                 rows: ':visible',
+        //                 stripHtml: false,
+        //             },
 
-                },
+        //         },
 
-            ],
+        //     ],
 
           pageLength: 20,
           processing: true,
@@ -247,9 +246,9 @@
               {data: 'sl_no', name: 'sl_no'},
 
               {data:'category_name',name:'category_name'},
-              {data:'sub_category_name',name:'sub_category_name'},
+
               {data:'product_name',name:'product_name'},
-              {data:'warehouse',name:'warehouse'},
+
               {data:'product_image',name:'product_image'},
               {data:'product_price',name:'product_price'},
               {data:'product_unit_type',name:'product_unit_type'},
