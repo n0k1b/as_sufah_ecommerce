@@ -73,8 +73,8 @@
                                 </a>
                                 <div class="btn-icon-group">
                                     <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal" onclick="handleAddToCart({{$product->id}})"><i class="icon-bag"></i></button>
-                                    <a href="#" class="btn-icon btn-icon-wish"><i class="icon-heart"></i></a>
-                                    <a href="ajax/product-quick-view.html" class="btn-icon btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a> 
+                                    {{-- <a href="#" class="btn-icon btn-icon-wish"><i class="icon-heart"></i></a>
+                                    <a href="ajax/product-quick-view.html" class="btn-icon btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a>  --}}
                                 </div>
                             </figure>
                             <div class="product-details">

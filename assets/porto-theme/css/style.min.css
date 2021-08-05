@@ -12410,6 +12410,33 @@ tbody .product-col {
     }
 }
 
+.featured-products-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    font-family: "Oswald", sans-serif;
+    position: relative;
+}
+
+.featured-products-title h2 {
+    font-size: 3rem !important;
+    text-transform: uppercase;
+}
+
+.featured-products-title a {
+    text-transform: uppercase;
+    position: absolute;
+    font-size: 1.3rem;
+    color: #1ba187;
+    right: 0px;
+    top: 0px;
+}
+
+.featured-products-title a:hover {
+    color: #1fc0a0;
+}
+
 
 /* body>div.mfp-bg.mfp-newsletter.mfp-ready {
     display: none;

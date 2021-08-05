@@ -106,11 +106,11 @@
                                 <button href="cart.html" class="paction add-cart" title="Add to Cart" onclick="handleAddToCart({{$product->id}})">
                                     <span>Add to Cart</span>
                                 </button>
-                                <button href="#" class="paction add-wishlist" title="Add to Wishlist">
+                                {{-- <button href="#" class="paction add-wishlist" title="Add to Wishlist">
                                     <span>Add to Wishlist</span>
                                 </button>
                                 <button href="#" class="paction add-compare" title="Add to Compare">
-                                    <span>Add to Compare</span>
+                                    <span>Add to Compare</span> --}}
                                 </button>
                             </div><!-- End .product-action -->
 
@@ -301,7 +301,7 @@
                     </div><!-- End .banner -->
                 </div><!-- End .widget -->
 
-                <div class="widget widget-featured">
+                {{-- <div class="widget widget-featured">
                     <h3 class="widget-title">Featured Products</h3>
                     
                     <div class="widget-body">
@@ -446,13 +446,13 @@
                             </div><!-- End .featured-col -->
                         </div><!-- End .widget-featured-slider -->
                     </div><!-- End .widget-body -->
-                </div><!-- End .widget -->
+                </div><!-- End .widget --> --}}
             </div>
         </aside><!-- End .col-md-3 -->
     </div><!-- End .row -->
 </div><!-- End .container -->
 
-<div class="featured-section">
+{{-- <div class="featured-section">
     <div class="container">
         <h2 class="carousel-title">Featured Products</h2>
 
@@ -605,9 +605,9 @@
             </div>
         </div><!-- End .featured-products -->
     </div><!-- End .container -->
-</div><!-- End .featured-section -->
+</div><!-- End .featured-section --> --}}
 @endsection
 
 @section('page-script')
-<script src="{{ asset('/assets/porto-theme/js/pages/single-products.js') }}"></script>
+<script src="{{ asset('/assets/porto-theme/js/pages/single-product-view.js') }}"></script>
 @endsection
