@@ -4,4 +4,5 @@ const Routes = {
     getCartDetails: `${baseURL}/product/cart/details`,
     removeFromCart: (product_id => `${baseURL}/product/cart/remove/${product_id}`),
     viewAllProducts: ((id, item_id) => `${baseURL}/product/all/${id}/${item_id}`)
+
 }

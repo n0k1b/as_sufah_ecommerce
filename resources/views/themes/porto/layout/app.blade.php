@@ -138,7 +138,11 @@
                                             <a href="#" class="nolink">All Brands</a>
                                             <ul class="submenu">
                                                 @foreach ($brands as $brand)
+<<<<<<< HEAD
                                                     <li><a href="{{ route('view-all-products-byBrand', ['brand' => $brand->id]) }}">{{ $brand->brand_name }}</a></li>
+=======
+                                                    <li><a href="product.html">{{ $brand->brand_name }}</a></li>
+>>>>>>> cf1d3f4df1a89beb7aca25100b1a41741b5eb537
                                                 @endforeach
                                             </ul>
                                         </div><!-- End .col-lg-4 -->
@@ -226,7 +230,13 @@
                             <div class="widget">
                                 <h3 class="widget-title">about us</h3>
                                 <div class="widget-content">
+<<<<<<< HEAD
                                     <p style="margin-right: 8rem;">Ecommerce store.</p>
+=======
+                                    <p style="margin-right: 8rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique augue eget enim
+                                    feugiat blandit. Phasellus bibendum ex leo, at egestas lacus pellentesque in x leo, at
+                                    egestas lacus.</p>
+>>>>>>> cf1d3f4df1a89beb7aca25100b1a41741b5eb537
                                 </div>
                             </div>
                         </div>
@@ -468,7 +478,10 @@
     <script src="{{ asset('/assets/porto-theme/vendor/bootstrap/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('/assets/porto-theme/vendor/isotope-docs/isotope-docs.min.js') }}"></script>
     <script src="{{ asset('/assets/porto-theme/js/plugins.min.js') }}"></script>
+<<<<<<< HEAD
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+=======
+>>>>>>> cf1d3f4df1a89beb7aca25100b1a41741b5eb537
 
     <!-- Main JS File -->
     <script src="{{ asset('/assets/porto-theme/js/routes.js') }}"></script>
