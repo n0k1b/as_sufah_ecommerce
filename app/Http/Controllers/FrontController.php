@@ -1028,6 +1028,7 @@ class FrontController extends Controller
     public function update_address(Request $request)
     {
        $id = $request->id;
+      // file_put_contents('test.txt',json_encode($request));
        user_address::where('id',$id)->update($request->all());
     }
     public function edit_address($id)
@@ -1071,7 +1072,7 @@ class FrontController extends Controller
         $mobile_number = '88'.$mobile_number;
         $url = "http://gsms.pw/smsapi";
   $data = [
-    "api_key" => "C20003436040f26e6f69b0.10063984",
+    "api_key" => "C2000343610a798a92fde7.49639094",
     "type" => "text",
     "contacts" => $mobile_number,
     "senderid" => "8809601001329",

@@ -10,7 +10,7 @@ class CartController extends Controller
     //
     function add_to_cart($product_id, $quantity)
     {
-        $cart = session()->get('cart');        
+        $cart = session()->get('cart');
         if($cart === null) {
             $cart = [];
         }
@@ -23,6 +23,7 @@ class CartController extends Controller
                 'image' => $product->thumbnail_image,
                 'price' => $product->price,
                 'quantity' => (int)$quantity,
+                'unit'=>$product->unit->unit_quantity.' '.$product->unit->unit_type
             );
             $cart[$product_id] = $props;
         }

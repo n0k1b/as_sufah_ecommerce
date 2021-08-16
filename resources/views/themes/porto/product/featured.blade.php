@@ -3,7 +3,7 @@
     | Products
 @endsection
 @section('content')
-<div class="banner banner-cat" style="background-image: url({{ asset('/assets/porto-theme/images/banners/banner-top.jpg') }});">
+{{-- <div class="banner banner-cat" style="background-image: url({{ asset('/assets/porto-theme/images/banners/banner-top.jpg') }});">
     <div class="banner-content container">
         <h2 class="banner-subtitle">check out over <span>200+</span></h2>
         <h1 class="banner-title">
@@ -11,14 +11,14 @@
         </h1>
         <a href="#" class="btn btn-primary">Shop Now</a>
     </div><!-- End .banner-content -->
-</div><!-- End .banner -->
+</div><!-- End .banner --> --}}
 
 <nav aria-label="breadcrumb" class="breadcrumb-nav">
     <div class="container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
             @if ($cat_name !== null)
-            <li class="breadcrumb-item"><a href="#">{{ $cat_name }}</a></li>  
+            <li class="breadcrumb-item"><a href="#">{{ $cat_name }}</a></li>
             @endif
         </ol>
     </div><!-- End .container -->
@@ -88,14 +88,14 @@
                                 </div><!-- End .price-box -->
                             </div><!-- End .product-details -->
                         </div>
-                    </div><!-- End .col-xl-3 -->  
+                    </div><!-- End .col-xl-3 -->
                 @endforeach
-                
 
-                
+
+
             </div><!-- End .row -->
 
-            <nav class="toolbox toolbox-pagination">
+            {{-- <nav class="toolbox toolbox-pagination">
                 <div class="toolbox-item toolbox-show">
                     <label>Showing 1–9 of 60 results</label>
                 </div><!-- End .toolbox-item -->
@@ -116,7 +116,7 @@
                         <a class="page-link page-link-btn" href="#"><i class="icon-angle-right"></i></a>
                     </li>
                 </ul>
-            </nav>
+            </nav> --}}
         </div><!-- End .col-lg-9 -->
 
         {{-- <aside class="sidebar-shop col-lg-3 order-lg-first">

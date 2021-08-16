@@ -6,14 +6,14 @@
 <nav aria-label="breadcrumb" class="breadcrumb-nav mb-4">
     <div class="container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Product</li>
         </ol>
     </div>
 </nav>
 <div class="container">
     <div class="row">
-        <div class="col-lg-9">
+        <div class="col-lg-10">
             <div class="product-single-container product-single-default">
                 <div class="row">
                     <div class="col-lg-7 col-md-6 product-single-gallery">
@@ -26,7 +26,7 @@
                                         <img class="product-single-image" src="{{ asset($image->image) }}" data-zoom-image="{{ asset($image->image) }}"/>
                                     </div>
                                 @endforeach
-                                
+
                             </div>
                             <!-- End .product-single-carousel -->
                             <span class="prod-full-screen">
@@ -43,43 +43,37 @@
                         {{-- If product doesn't contain set of images except featured images --}}
                         @else
                         <div class="product-slider-container product-item">
-                            <div class="">                                
+                            <div class="">
                                 <div class="product-item">
                                     <img class="product-single-image" src="{{ asset($product->thumbnail_image) }}" data-zoom-image="{{ asset($product->thumbnail_image) }}"/>
-                                </div>                              
+                                </div>
                             </div>
                             <!-- End .product-single-carousel -->
                             <span class="prod-full-screen">
                                 <i class="icon-plus"></i>
                             </span>
-                        </div>    
+                        </div>
                         @endif
-                        
+
                     </div><!-- End .col-lg-7 -->
 
                     <div class="col-lg-5 col-md-6">
                         <div class="product-single-details">
                             <h1 class="product-title">{{ $product->name }}</h1>
 
-                            <div class="ratings-container">
-                                <div class="product-ratings">
-                                    <span class="ratings" style="width:60%"></span><!-- End .ratings -->
-                                </div><!-- End .product-ratings -->
-
-                                <a href="#" class="rating-link">( 6 Reviews )</a>
-                            </div><!-- End .product-container -->
+                           <!-- End .product-container -->
 
                             <div class="price-box">
                                 {{-- Please uncomment this to use old price feature into website --}}
                                 {{-- <span class="old-price">$81.00</span> --}}
-                                
-                                <span class="product-price">{{ $product->price }} tk.</span>
-                                
-                                
+
+                                <span class="product-price">Tk {{ $product->price }}  <span class="product_unit">({{ $product->unit->unit_quantity }} <span>{{ $product->unit->unit_type }})</span></span></span>
+
+
                             </div><!-- End .price-box -->
 
                             <div class="product-desc">
-                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non.</p>
+                                <p>{{ $product->description }}</p>
                             </div><!-- End .product-desc -->
 
                             @if (count($product->colors) > 0)
@@ -96,7 +90,7 @@
                                 </div><!-- End .product-single-filter -->
                             </div><!-- End .product-filters-container -->
                             @endif
-                            
+
 
                             <div class="product-action product-all-icons">
                                 <div class="product-single-qty">
@@ -115,7 +109,7 @@
                             </div><!-- End .product-action -->
 
                             <div class="product-single-share">
-                                <label>Share:</label>
+                                {{-- <label>Share:</label> --}}
                                 <!-- www.addthis.com share plugin-->
                                 <div class="addthis_inline_share_toolbox"></div>
                             </div><!-- End .product single-share -->
@@ -124,7 +118,7 @@
                 </div><!-- End .row -->
             </div><!-- End .product-single-container -->
 
-            <div class="product-single-tabs">
+            {{-- <div class="product-single-tabs">
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="product-tab-desc" data-toggle="tab" href="#product-desc-content" role="tab" aria-controls="product-desc-content" aria-selected="true">Description</a>
@@ -263,20 +257,20 @@
                         </div><!-- End .product-reviews-content -->
                     </div><!-- End .tab-pane -->
                 </div><!-- End .tab-content -->
-            </div><!-- End .product-single-tabs -->
+            </div><!-- End .product-single-tabs --> --}}
         </div><!-- End .col-lg-9 -->
 
         <div class="sidebar-overlay"></div>
         <div class="sidebar-toggle"><i class="icon-right-open"></i></div>
-        <aside class="sidebar-product col-lg-3 padding-left-lg mobile-sidebar">
+        {{-- <aside class="sidebar-product col-lg-3 padding-left-lg mobile-sidebar">
             <div class="sidebar-wrapper">
-                <div class="widget widget-brand">
+                {{-- <div class="widget widget-brand">
                     <a href="#">
                         <img src="{{ asset('/assets/porto-theme/images/product-brand.png') }}" alt="brand name">
                     </a>
-                </div><!-- End .widget -->
+                </div><!-- End .widget --> --}}
 
-                <div class="widget widget-info">
+                {{-- <div class="widget widget-info">
                     <ul>
                         <li>
                             <i class="icon-shipping"></i>
@@ -291,19 +285,19 @@
                             <h4>ONLINE<br>SUPPORT 24/7</h4>
                         </li>
                     </ul>
-                </div><!-- End .widget -->
+                </div><!-- End .widget --> --}}
 
-                <div class="widget widget-banner">
+                {{-- <div class="widget widget-banner">
                     <div class="banner banner-image">
                         <a href="#">
                             <img src="{{ asset('/assets/porto-theme/images/banners/banner-sidebar.jpg') }}" alt="Banner Desc">
                         </a>
                     </div><!-- End .banner -->
-                </div><!-- End .widget -->
+                </div><!-- End .widget --> --}}
 
                 {{-- <div class="widget widget-featured">
                     <h3 class="widget-title">Featured Products</h3>
-                    
+
                     <div class="widget-body">
                         <div class="owl-carousel widget-featured-products" data-toggle="owl" data-owl-options="{
                             'lazyLoad': true,
@@ -481,7 +475,7 @@
                     <div class="btn-icon-group">
                         <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="icon-bag"></i></button>
                         <a href="#" class="btn-icon btn-icon-wish"><i class="icon-heart"></i></a>
-                        <a href="ajax/product-quick-view.html" class="btn-icon btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a> 
+                        <a href="ajax/product-quick-view.html" class="btn-icon btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a>
                     </div>
                 </figure>
                 <div class="product-details">
@@ -507,7 +501,7 @@
                     <div class="btn-icon-group">
                         <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="icon-bag"></i></button>
                         <a href="#" class="btn-icon btn-icon-wish"><i class="icon-heart"></i></a>
-                        <a href="ajax/product-quick-view.html" class="btn-icon btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a> 
+                        <a href="ajax/product-quick-view.html" class="btn-icon btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a>
                     </div>
                 </figure>
                 <div class="product-details">
@@ -533,7 +527,7 @@
                     <div class="btn-icon-group">
                         <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="icon-bag"></i></button>
                         <a href="#" class="btn-icon btn-icon-wish"><i class="icon-heart"></i></a>
-                        <a href="ajax/product-quick-view.html" class="btn-icon btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a> 
+                        <a href="ajax/product-quick-view.html" class="btn-icon btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a>
                     </div>
                 </figure>
                 <div class="product-details">
@@ -559,7 +553,7 @@
                     <div class="btn-icon-group">
                         <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="icon-bag"></i></button>
                         <a href="#" class="btn-icon btn-icon-wish"><i class="icon-heart"></i></a>
-                        <a href="ajax/product-quick-view.html" class="btn-icon btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a> 
+                        <a href="ajax/product-quick-view.html" class="btn-icon btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a>
                     </div>
                 </figure>
                 <div class="product-details">
@@ -585,7 +579,7 @@
                     <div class="btn-icon-group">
                         <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="icon-bag"></i></button>
                         <a href="#" class="btn-icon btn-icon-wish"><i class="icon-heart"></i></a>
-                        <a href="ajax/product-quick-view.html" class="btn-icon btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a> 
+                        <a href="ajax/product-quick-view.html" class="btn-icon btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a>
                     </div>
                 </figure>
                 <div class="product-details">

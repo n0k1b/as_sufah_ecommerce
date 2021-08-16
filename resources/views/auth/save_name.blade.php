@@ -9,7 +9,7 @@
     <meta name="description" content="Authentication forms">
     <meta name="author" content="Arasari Studio">
 
-    <title>GOGO SHOP</title>
+    <title>As Suffah</title>
     <link href="{{asset('assets')}}/auth/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{asset('assets')}}/auth/css/common.css" rel="stylesheet">
 

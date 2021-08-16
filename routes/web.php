@@ -27,12 +27,45 @@ Route::get('/api_get_subcategories/{id}', [CategoryController::class, 'subcatego
 Route::get('/product/all/{cat}/{sub_cat}', [PortoFrontendController::class,'viewAllProducts'])->name('proto-view-all-products');
 Route::get('/product/bybrand/all/{brand}', [PortoFrontendController::class,'viewProductByBrand'])->name('view-all-products-byBrand');
 Route::get('/product/filtered_search/all', [PortoFrontendController::class,'viewAllProductsByBrandOrCategory'])->name('proto-view-all-products-byBrandOrCategory');
-Route::get('/product/flash_deals/all', [PortoFrontendController::class,'viewAllFlashDeals'])->name('proto-view-all-flashDeals');
+Route::get('/product/flash_deals/{id}', [PortoFrontendController::class,'viewAllFlashDeals'])->name('proto-view-all-flashDeals');
 Route::get('/product/cart/add/{product_id}/{quantity}', [CartController::class, 'add_to_cart'])->name('porto-add-to-cart');
 Route::get('/product/cart/details', [CartController::class, 'get_cart_details'])->name('porto-get-cart-details');
 Route::get('/product/cart/remove/{product_id}', [CartController::class, 'delete_item'])->name('porto-remove-from-cart');
-Route::get('/cart/checkout', [PortoFrontendController::class, 'viewCartCheckout'])->name('porto-view-cart-checkout');
+//Route::get('/cart/checkout', [PortoFrontendController::class, 'viewCartCheckout'])->name('porto-view-cart-checkout');
+Route::get('view_cart',[PortoFrontendController::class, 'view_cart'])->name('porto-view-cart');
+Route::get('checkout',[PortoFrontendController::class, 'viewCartCheckout'])->name('porto-view-cart-checkout');
+Route::get('get_all_cart_info','PortoFrontendController@get_all_cart_info');
+Route::get('get_all_address','PortoFrontendController@get_all_address');
+Route::post('add_address','PortoFrontendController@add_address');
+Route::get('delete_address/{id}','PortoFrontendController@delete_address');
+Route::post('update_address','PortoFrontendController@update_address');
+Route::get('edit_address/{id}','PortoFrontendController@edit_address');
+Route::post('place_order','PortoFrontendController@place_order')->name('place_order');
+Route::get('complete_order','PortoFrontendController@complete_order')->name('complete_order');
 
+//Auth Start
+     Route::get('login', function () {
+     return view('auth.register');
+ })->name('login');
+
+
+ Route::group(['middleware' => 'IsLoggedIn'], function()
+{
+
+
+
+
+});
+
+Route::post('send_otp','FrontController@send_otp')->name('send_otp');
+Route::post('submit_otp','FrontController@submit_otp')->name('submit_otp');
+Route::get('logout','FrontController@logout')->name('logout');
+Route::view('otp','auth.save_name');
+
+
+
+
+//Auth End
 
 
 //test route start
@@ -58,7 +91,7 @@ Route::get('/cart/checkout', [PortoFrontendController::class, 'viewCartCheckout'
 // Route::get('cart_delete/{id}','FrontController@cart_delete')->name('cart_delete');
 // Route::get('view_cart','FrontController@view_cart')->name('view_cart');
 // Route::get('get_all_cart_info','FrontController@get_all_cart_info');
-// Route::post('cart_update','FrontController@cart_update');
+Route::post('cart_update','FrontController@cart_update');
 // Route::get('show_cart_modal/{id}','FrontController@show_cart_modal')->name('show_cart_modal');
 
 // Route::post('send_otp','FrontController@send_otp')->name('send_otp');

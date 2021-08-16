@@ -7,13 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+
     <title>As Sufah @yield('title')</title>
 
     <meta name="keywords" content="HTML5 Template" />
-    <meta name="description" content="Porto - Bootstrap eCommerce Template">
-    <meta name="author" content="SW-THEMES">
+    <meta name="description" content="As Suffah">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicon -->
+    @yield('page-css')
     <link rel="icon" type="image/x-icon" href="{{ asset('/assets/porto-theme/images/icons/favicon.ico') }}">
 
     <script type="text/javascript">
@@ -32,9 +35,10 @@
     <link rel="stylesheet" href="{{ asset('/assets/porto-theme/vendor/bootstrap/bootstrap.min.css') }}">
 
     <!-- Main CSS File -->
-    <link rel="stylesheet" href="{{ asset('assets/porto-theme/css/style.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/porto-theme')}}/css/style.min.css?{{ time() }}">
     <link rel="stylesheet" type="text/css" href=" {{ asset('/assets/porto-theme/vendor/fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
+
 </head>
 <body>
     <div class="page-wrapper">
@@ -43,12 +47,12 @@
                 <div class="container">
                     <div class="header-left">
                         <div class="header-search">
-                            <form action="#" method="get">
+                            {{-- <form action="#" method="get">
                                 <div class="submit-wrapper">
                                     <input type="search" class="form-control" name="q" id="q" placeholder="SEARCH" required>
                                     <button class="btn" type="submit"><i class="fas fa-search"></i></button>
                                 </div><!-- End .header-search-wrapper -->
-                            </form>
+                            </form> --}}
                         </div>
                     </div>
                     <div class="header-right">
@@ -56,8 +60,8 @@
                             <ul class="menu">
                                 {{-- <li><a href="#">My Account</a></li> --}}
                                 {{-- <li><a href="#">My Wishlist</a></li> --}}
-                                <li><a href="{{ route('proto-view-all-products', ['cat' => -1, 'sub_cat' => -1]) }}">SHOP</a></li>
-                                <li><a href="#">Login</a></li>
+
+                                <li><a href="{{ route('login') }}">Login</a></li>
                             </ul>
                         </nav>
                         <div class="dropdown cart-dropdown">
@@ -85,7 +89,7 @@
                                     </div><!-- End .dropdown-cart-total -->
 
                                     <div class="dropdown-cart-action">
-                                        <a href="{{ route('porto-view-cart-checkout') }}" class="btn btn-block">Checkout</a>
+                                        <a href="{{ route('porto-view-cart') }}" class="btn btn-block">Checkout</a>
                                     </div><!-- End .dropdown-cart-total -->
                                 </div><!-- End .dropdownmenu-wrapper -->
                             </div><!-- End .dropdown-menu -->
@@ -112,14 +116,8 @@
                                                 @endforeach
                                             </ul>
                                         </div>
-                                        <div class="col-lg-4">
-                                            <ul class="submenu sub-categories">
 
-                                            </ul>
-                                        </div>
-                                        <div class="col-lg-4 image-container">
-                                            <img src="{{ asset('/assets/porto-theme/images/menu-banner-2.jpg') }}" align="Menu banner">
-                                        </div>
+
                                     </div>
                                 </div><!-- End .megamenu -->
                             </li>
@@ -130,35 +128,8 @@
                     </a>
                     <nav class="main-nav">
                         <ul class="menu">
-                            <li class="">
-                                <a href="#">Brands</a>
-                                <div class="megamenu megamenu-fixed-width menu-right">
-                                    <div class="row row-sm">
-                                        <div class="col-lg-4">
-                                            <a href="#" class="nolink">All Brands</a>
-                                            <ul class="submenu">
-                                                @foreach ($brands as $brand)
-<<<<<<< HEAD
-                                                    <li><a href="{{ route('view-all-products-byBrand', ['brand' => $brand->id]) }}">{{ $brand->brand_name }}</a></li>
-=======
-                                                    <li><a href="product.html">{{ $brand->brand_name }}</a></li>
->>>>>>> cf1d3f4df1a89beb7aca25100b1a41741b5eb537
-                                                @endforeach
-                                            </ul>
-                                        </div><!-- End .col-lg-4 -->
-                                    </div><!-- End .row -->
-                                </div><!-- End .megamenu -->
-                            </li>
-                            <li class="sf-with-ul">
-                                <a href="#">Pages</a>
-                                <ul>
-                                    <li><a href="{{ route('porto-view-cart-checkout') }}">Checkout</a></li>
-                                    <li><a href="{{ route('admin-dashboard') }}">Admin Dashboard</a></li>
-                                    {{-- <li><a href="about.html">About Us</a></li> --}}
-                                    {{-- <li><a href="contact.html">Contact Us</a></li> --}}
-                                    <li><a href="#" class="login-link">Login</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="{{ route('proto-view-all-products', ['cat' => -1, 'sub_cat' => -1]) }}">SHOP</a></li>
+                            <li><a href="#">Order Tracking</a></li>
                         </ul>
                     </nav>
                     <button class="mobile-menu-toggler" type="button">
@@ -230,13 +201,7 @@
                             <div class="widget">
                                 <h3 class="widget-title">about us</h3>
                                 <div class="widget-content">
-<<<<<<< HEAD
                                     <p style="margin-right: 8rem;">Ecommerce store.</p>
-=======
-                                    <p style="margin-right: 8rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique augue eget enim
-                                    feugiat blandit. Phasellus bibendum ex leo, at egestas lacus pellentesque in x leo, at
-                                    egestas lacus.</p>
->>>>>>> cf1d3f4df1a89beb7aca25100b1a41741b5eb537
                                 </div>
                             </div>
                         </div>

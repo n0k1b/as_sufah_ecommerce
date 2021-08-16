@@ -1,5 +1,14 @@
 @extends('themes.porto.layout.app')
 
+@section('page-css')
+    <style>
+        .select2-container .select2-selection--single {
+            font-size: 16px !important;
+            height: 34px !important;
+        }
+    </style>
+@endsection
+
 @section('content')
 <div class="container">
     <section>
@@ -35,13 +44,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="select-custom">
-                        <select class="select-brand-select2 form-control" name="brand">
-                            @foreach ($brands as $brand)
-                                <option value={{ $brand->id }}>{{ $brand->brand_name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+
                     <button class="btn btn-primary" type="submit">Browse</button>
                 </form>
                 <div class="home-banner mb-2">
@@ -151,7 +154,7 @@
     <section class="featured-products">
         <div class="featured-products-title">
             <h2>{{ $section_product->section_name }}</h2>
-            <a href="{{ route('proto-view-all-flashDeals') }}">View All <i class="fas fa-chevron-right"></i></a>
+            <a href="{{ route('proto-view-all-flashDeals', ['id' =>  $section_product->id]) }}">View All <i class="fas fa-chevron-right"></i></a>
         </div>
 
 
@@ -185,17 +188,12 @@
                     </div>
                 </figure>
                 <div class="product-details">
-                    <div class="ratings-container">
-                        <div class="product-ratings">
-                            <span class="ratings" style="width:80%"></span><!-- End .ratings -->
-                            <span class="tooltiptext tooltip-top"></span>
-                        </div><!-- End .product-ratings -->
-                    </div><!-- End .product-container -->
+                    <!-- End .product-container -->
                     <h2 class="product-title">
                         <a href="{{ route('porto-view-single-product', ['id' => $product_list->product->id]) }}">{{ $product_list->product->name }}</a>
                     </h2>
                     <div class="price-box">
-                        <span class="product-price">{{ $product_list->product->price }}</span>
+                        Tk <span class="product-price">{{ $product_list->product->price }}   <span class="product_unit">({{ $product_list->product->unit->unit_quantity }} <span>{{ $product_list->product->unit->unit_type }})</span></span></span>
                     </div><!-- End .price-box -->
                 </div><!-- End .product-details -->
             </div>

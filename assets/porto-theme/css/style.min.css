@@ -10,7 +10,7 @@ html {
 
 body {
     background-color: #fff;
-    color: #767f84;
+    color: black;
     font: normal 400 1.3rem / 1.4 "Open Sans", "Open Sans", sans-serif;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
@@ -2029,6 +2029,7 @@ form {
     -moz-osx-font-smoothing: grayscale;
     speak: none
 }
+
 
 .icon-cancel:before {
     content: '\e800'
@@ -9278,9 +9279,14 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 
 .product-single-gallery img {
     display: block;
-    width: 100%;
+    width: 80%;
     max-width: none;
     height: auto
+}
+
+.product_unit{
+    font-size: 17px;
+    color:#A93226;
 }
 
 .product-single-gallery .owl-theme .owl-nav,

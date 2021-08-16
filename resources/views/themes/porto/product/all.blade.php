@@ -3,7 +3,7 @@
     | Products
 @endsection
 @section('content')
-<div class="banner banner-cat" style="background-image: url({{ asset('/assets/porto-theme/images/banners/banner-top.jpg') }});">
+{{-- <div class="banner banner-cat" style="background-image: url({{ asset('/assets/porto-theme/images/banners/banner-top.jpg') }});">
     <div class="banner-content container">
         <h2 class="banner-subtitle">check out over <span>200+</span></h2>
         <h1 class="banner-title">
@@ -11,18 +11,18 @@
         </h1>
         <a href="#" class="btn btn-primary">Shop Now</a>
     </div><!-- End .banner-content -->
-</div><!-- End .banner -->
+</div><!-- End .banner --> --}}
 
 <nav aria-label="breadcrumb" class="breadcrumb-nav">
     <div class="container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('porto-home') }}">Home</a></li>
             @if ($cat_name !== null)
-            <li class="breadcrumb-item"><a href="#">{{ $cat_name }}</a></li>  
+            <li class="breadcrumb-item"><a href="#">{{ $cat_name }}</a></li>
             @elseif ($sub_cat_name !== null)
-            <li class="breadcrumb-item"><a href="#">{{ $sub_cat_name }}</a></li> 
-            @else 
-            <li class="breadcrumb-item"><a href="#">Shop</a></li> 
+            <li class="breadcrumb-item"><a href="#">{{ $sub_cat_name }}</a></li>
+            @else
+            <li class="breadcrumb-item"><a href="#">Shop</a></li>
             @endif
         </ol>
     </div><!-- End .container -->
@@ -34,16 +34,7 @@
             <nav class="toolbox">
                 <div class="toolbox-left">
                     <div class="toolbox-item toolbox-sort">
-                        <div class="select-custom">
-                            <select name="orderby" class="form-control">
-                                <option value="menu_order" selected="selected">Default sorting</option>
-                                <option value="popularity">Sort by popularity</option>
-                                <option value="rating">Sort by average rating</option>
-                                <option value="date">Sort by newness</option>
-                                <option value="price">Sort by price: low to high</option>
-                                <option value="price-desc">Sort by price: high to low</option>
-                            </select>
-                        </div><!-- End .select-custom -->
+                       <!-- End .select-custom -->
 
                         <a href="#" class="sorter-btn" title="Set Ascending Direction"><span class="sr-only">Set Ascending Direction</span></a>
                     </div><!-- End .toolbox-item -->
@@ -63,13 +54,13 @@
                 </div><!-- End .layout-modes --> --}}
             </nav>
 
-            <div class="row row-sm">=
+            <div class="row row-sm">
                 @foreach ($products as $product)
                     <div class="col-6 col-md-4 col-xl-3">
                         <div class="product-default inner-icon inner-icon-inline center-details">
                             <figure>
                                 <a href="{{ route('porto-view-single-product', ['id' => $product->id]) }}">
-                                    <img src="{{ asset($product->thumbnail_image) }}" style="height: 200px !important; width: auto !important;">
+                                    <img src="{{ asset($product->thumbnail_image) }}" style="height: 250px !important; width: 100% !important;">
                                 </a>
                                 <div class="btn-icon-group">
                                     <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal" onclick="handleAddToCart({{$product->id}})"><i class="icon-bag"></i></button>
@@ -78,28 +69,23 @@
                                 </div>
                             </figure>
                             <div class="product-details">
-                                <div class="ratings-container">
-                                    <div class="product-ratings">
-                                        <span class="ratings" style="width:80%"></span><!-- End .ratings -->
-                                        <span class="tooltiptext tooltip-top"></span>
-                                    </div><!-- End .product-ratings -->
-                                </div><!-- End .product-container -->
+                               <!-- End .product-container -->
                                 <h2 class="product-title">
                                     <a href="product.html">{{ $product->name }}</a>
                                 </h2>
                                 <div class="price-box">
-                                    <span class="product-price">${{ $product->price }}</span>
+                                    <span class="product-price">Tk {{ $product->price }}<span class="product_unit">({{ $product->unit->unit_quantity }} <span>{{ $product->unit->unit_type }})</span></span></span>
                                 </div><!-- End .price-box -->
                             </div><!-- End .product-details -->
                         </div>
-                    </div><!-- End .col-xl-3 -->  
+                    </div><!-- End .col-xl-3 -->
                 @endforeach
-                
 
-                
+
+
             </div><!-- End .row -->
 
-            <nav class="toolbox toolbox-pagination">
+            {{-- <nav class="toolbox toolbox-pagination">
                 <div class="toolbox-item toolbox-show">
                     <label>Showing 1–9 of 60 results</label>
                 </div><!-- End .toolbox-item -->
@@ -120,7 +106,7 @@
                         <a class="page-link page-link-btn" href="#"><i class="icon-angle-right"></i></a>
                     </li>
                 </ul>
-            </nav>
+            </nav> --}}
         </div><!-- End .col-lg-9 -->
 
         {{-- <aside class="sidebar-shop col-lg-3 order-lg-first">
