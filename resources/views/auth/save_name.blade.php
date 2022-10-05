@@ -25,7 +25,7 @@
 <div class="forny-inner">
     <div class="forny-form">
         <div class="mb-1 text-center forny-logo">
-            <img src="{{ asset('assets')}}/admin/images/logo.png" height="100px" width="100px">
+            <img src="{{ asset('assets')}}/admin/images/logo.png?{{ time() }}" height="100px" width="100px">
         </div>
         <div class="text-center">
             <p>Enter your information</p>

@@ -35,6 +35,32 @@ class PortoFrontendController extends Controller
 
         View::share(['categories' => $categories, 'brands' => $brands, 'logo' => $logo, 'company_info' =>$company_info]);
     }
+
+
+
+    public function submit_user_information(Request $request)
+    {
+        $name = $request->name;
+        $mobile_number = Session::get('mobile_number');
+        $user = new user();
+        $user->contact_no = $mobile_number;
+        $user->name = $name;
+        $user->role = 'customer';
+        $user->save();
+        Auth::login($user);
+        if(session()->has('cart'))
+                return redirect()->to('checkout');
+                else
+                return redirect()->to('/');
+        //return redirect()->to('/');
+
+        //user::create(['contact_no'=>$mobile_number,'name'=>$name]);
+       // user::where('contact_no',$mobile_number)->update(['name'=>$name]);
+    }
+
+
+
+
     public function get_all_cart_info()
     {
         $data = "";
@@ -350,6 +376,13 @@ echo json_encode(['cart_table'=>$data,'cart_total'=>$total_cart]);
         echo json_encode($data);
     }
 
+    function str_random($length = 16)
+    {
+         $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    return substr(str_shuffle(str_repeat($pool, 5)), 0, $length);
+    }
+
 
     public function send_otp(Request $request)
     {
@@ -385,12 +418,12 @@ echo json_encode(['cart_table'=>$data,'cart_total'=>$total_cart]);
     {
         $mobile_number = '88'.$mobile_number;
         $url = "http://gsms.pw/smsapi";
-  $data = [
-    "api_key" => "C20003436040f26e6f69b0.10063984",
+     $data = [
+    "api_key" => "C2000343610a798a92fde7.49639094",
     "type" => "text",
     "contacts" => $mobile_number,
     "senderid" => "8809601001329",
-    "msg" => "Your GOGO SHO OTP is ".$otp,
+    "msg" => "Your Urbor OTP is ".$otp,
   ];
   $ch = curl_init();
   curl_setopt($ch, CURLOPT_URL, $url);
@@ -426,6 +459,9 @@ echo json_encode(['cart_table'=>$data,'cart_total'=>$total_cart]);
              if($user)
              {
                 Auth::login($user);
+                if(session()->has('cart'))
+                return redirect()->to('checkout');
+                else
                 return redirect()->to('/');
              }
              else
@@ -437,7 +473,8 @@ echo json_encode(['cart_table'=>$data,'cart_total'=>$total_cart]);
         }
         else
         {
-            return redirect()->back()->with('error','Otp Not Matched');
+            return view('auth.otp',['error'=>'Otp Not Matched','mobile_number'=>$mobile_number]);
+           /// return redirect()->back()->with('error','Otp Not Matched');
         }
 
         //return response($response, 200);

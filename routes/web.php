@@ -42,6 +42,7 @@ Route::post('update_address','PortoFrontendController@update_address');
 Route::get('edit_address/{id}','PortoFrontendController@edit_address');
 Route::post('place_order','PortoFrontendController@place_order')->name('place_order');
 Route::get('complete_order','PortoFrontendController@complete_order')->name('complete_order');
+Route::post('cart_update','FrontController@cart_update');
 
 //Auth Start
      Route::get('login', function () {
@@ -52,14 +53,15 @@ Route::get('complete_order','PortoFrontendController@complete_order')->name('com
  Route::group(['middleware' => 'IsLoggedIn'], function()
 {
 
-
+    Route::post('submit_user_information','PortoFrontendController@submit_user_information')->name('submit_user_information');
+    Route::get('logout','PortoFrontendController@logout')->name('logout');
 
 
 });
 
-Route::post('send_otp','FrontController@send_otp')->name('send_otp');
-Route::post('submit_otp','FrontController@submit_otp')->name('submit_otp');
-Route::get('logout','FrontController@logout')->name('logout');
+Route::post('send_otp','PortoFrontendController@send_otp')->name('send_otp');
+Route::post('submit_otp','PortoFrontendController@submit_otp')->name('submit_otp');
+
 Route::view('otp','auth.save_name');
 
 
@@ -91,7 +93,7 @@ Route::view('otp','auth.save_name');
 // Route::get('cart_delete/{id}','FrontController@cart_delete')->name('cart_delete');
 // Route::get('view_cart','FrontController@view_cart')->name('view_cart');
 // Route::get('get_all_cart_info','FrontController@get_all_cart_info');
-Route::post('cart_update','FrontController@cart_update');
+
 // Route::get('show_cart_modal/{id}','FrontController@show_cart_modal')->name('show_cart_modal');
 
 // Route::post('send_otp','FrontController@send_otp')->name('send_otp');
@@ -133,10 +135,7 @@ Route::post('cart_update','FrontController@cart_update');
 // });
 
 
-// Route::group(['middleware' => 'Isuser'], function()
-// {
-//     Route::post('submit_user_information','FrontController@submit_user_information')->name('submit_user_information');
-// });
+
 
 Route::view('admin_login','admin.auth.login');
 Route::post('admin_login','AdminController@login')->name('admin_login');

@@ -60,8 +60,11 @@
                             <ul class="menu">
                                 {{-- <li><a href="#">My Account</a></li> --}}
                                 {{-- <li><a href="#">My Wishlist</a></li> --}}
-
+                                @if(auth()->check())
+                                <li><a href="#">Hi, {{ auth()->user()->name }}</a></li>
+                                @else
                                 <li><a href="{{ route('login') }}">Login</a></li>
+                                @endif
                             </ul>
                         </nav>
                         <div class="dropdown cart-dropdown">
